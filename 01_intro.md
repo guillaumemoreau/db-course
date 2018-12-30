@@ -154,3 +154,31 @@
 ## Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-4.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-5.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-6.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-7.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-8.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-9.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-10.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-11.pdf}}
