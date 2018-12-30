@@ -251,7 +251,77 @@
 - If new constraints arise, update the database schema
   - update the conceptual schema
   - deduce the modifications that are required in the database
-    - including existing data themselves 
+    - including existing data themselves
   - test evolutions on the test base
   - tell the users!!
   - update the database
+- Note: it may happen that you will have to update a database schema for which you do not have all documents
+  - reverse engineering
+
+# Database Management Systems (DBMS)
+
+## DBMS
+
+- Software used to organize and handle data
+- Main functions
+  - Describe the database(s) structure
+  - Manipulate data
+  - Use data
+  - Ensure data integrity and confidentiality
+  - Optimize data access
+
+## DBMS
+
+- Characterized by the supported data model
+  - 1st generation
+    - based on hierarchical and network models
+    - navigation-based data language
+  - 2nd generation
+    - based on the relational model
+    - SQL...
+  - 3rd generation
+    - based on the object model
+    - SQL3 and others...
+
+## DBMS users
+
+- System engineer
+  - Maintenance, backups & restores
+- Database administrator
+  - defines the various components of the database
+  - description or definition language
+- Application administrator
+- Application programmer
+  - writes programs for an application
+  - manipulation language
+- Database user
+  - uses the DB to obtain information
+  - query language
+
+## A few DBMS examples
+
+- Oracle
+- SQL Server
+- Sybase
+- DB2
+- PostgreSQL
+- mySQL
+- H2
+- ...
+
+
+## Using a DBMS
+
+- Setting up the DBMS
+  - installation
+  - configure
+  - secure
+- Setting up an administration software
+- Dialog between the software through Internet
+  - data manipulation language
+
+## Summary
+
+- Analysis: a DB is a representation of a part of reality which is of interest
+
+\center{\includegraphics[width=.6\textwidth]{fig/analysis.pdf}}
