@@ -182,3 +182,76 @@
 ## Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-11.pdf}}
+
+## How to collect information?
+
+- Written documents
+  - existing documents (bills, forms...)
+  - documents to write (questionnaires, statistics...)
+- Oral enquiry
+  - stakeholders interviews (explanations, cross-check, supplementary material)
+- Visual enquiry
+  - qualitative (acting stakeholder, information circuit...)
+    - seeing how it actually works on the desktop  
+    - following an information
+  - quantitative
+    - numbers of computers, servers, forms, processed documents, processing times...
+
+## Propose possible solutions
+
+- Ask questions to the future users
+- Gather documents
+- Sort information
+- Dictionary of the terminology
+- *Validate* upon users and managers
+
+## Model the system
+
+- Structure information
+- Model information (conceptual model)
+- *Validate* upon users and managers
+
+## Conceptual model
+
+- Independent from technologies
+  - portability
+  - durability
+- User-oriented
+  - Legible
+  - Supporting the dialog between designers and users
+  - allows collaboration with and validation by users
+- Formal unambiguous specifications
+- Support for visual interfaces
+- Facilitates information exchange between several DB systems
+
+
+## Designing a solution
+
+- Translate the conceptual model into a logical model
+- Add types to complete the physical model
+- Choose a DBMS type
+- Translate into SQL
+- Implement the SQL file(s) into the DBMS
+- If required, add internal functions
+- Add security elements
+
+## Test the solution
+
+- Setup a test database
+- Add information
+- Check primary key presence (same for secondary keys) and that they are normally working
+- Test for data required for processings
+- Test for response times
+- Test for security
+
+
+## Maintain and improve the system
+
+- Correct errors if any
+- If new constraints arise, update the database schema
+  - update the conceptual schema
+  - deduce the modifications that are required in the database
+    - including existing data themselves 
+  - test evolutions on the test base
+  - tell the users!!
+  - update the database
