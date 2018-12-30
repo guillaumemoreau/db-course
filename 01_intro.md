@@ -77,8 +77,80 @@
 
 - The database can now be populated and used
 
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-5.pdf}}
+\center{\includegraphics[height=.55\textheight]{fig/cmodel-5.pdf}}
 
 ## Operating
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-6.pdf}}
+
+## Definitions
+
+- **Modeling** is the activity which consists in elaborating a structured representation of reality
+- A **database** is a **representation** of a part of the real world which is of interest for users and applications
+- **Modeling a database** is the elaboration of data structures for the data that will be recorded into a database
+- The definition of those structures is stored in the **schema** of a database
+
+
+## Information system
+
+\center{\includegraphics[height=.65\textheight]{fig/is.pdf}}
+
+
+# Databases
+
+## Definitions
+
+> 'Structured set of data recorded on devices a computer can access to simultaneously satisfy several users in a selective way and at the right time[^da]'
+
+
+> 'Set of data memorized by a computer, used by several persons and having an organization described by a data model[^mo]'
+
+> 'Set of data handled a dabatase management system used to model a single company[^ga]'
+
+[^da]: Delobel, Adiba
+[^mo]: Morejon
+[^ga]: Gardarin
+
+## Criteria
+
+1. Good representation of the real world
+2. No redundancy of information
+3. Independence between data and processings
+4. Security and confidentiality of data
+5. Performance of applications and queries
+
+
+## Deploying a database
+
+1. Determine and identify the problem
+2. Propose possible solutions
+3. Model the system
+4. Design the solution
+5. Test the solution
+6. Maintain and improve the system
+
+## Determine and identify the problem
+
+- What problem are you modeling?
+- What are the boundaries of the problem?
+  - i.e. what are you **not** modeling?
+- Who are the stakeholders?
+- What are the reference documents?
+- What data? Which processings?
+- What are the constraints?
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-1.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-2.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-3.pdf}}
+
+## Gathering information
+
+\center{\includegraphics[width=.8\textwidth]{fig/info-4.pdf}}
