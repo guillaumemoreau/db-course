@@ -1,0 +1,102 @@
+% the 3 colors
+\definecolor{IndigoCN}{HTML}{102648}
+\definecolor{YellowCN}{HTML}{FAB600}
+\definecolor{WhiteCN}{HTML}{FFFFFF}
+\definecolor{RedCN}{RGB}{233,66,80}
+\definecolor{GreenCN}{RGB}{115,186,89}
+\definecolor{OrangeCN}{RGB}{241,136,18}
+\definecolor{BlueCN}{RGB}{69,180,231}
+\definecolor{DenimCN}{RGB}{21,96,189}
+
+
+% for the colors that have not been defined yet (workarounf for compilation only)
+\definecolor{Color1}{HTML}{FF0000} %red
+\definecolor{Color2}{HTML}{00FF00} %green
+\definecolor{Color3}{HTML}{0000FF} %blue
+
+% the logo on the title page
+\titlegraphic{\includegraphics[height=1.5cm]{logos/logocn.png}}
+% the logo on every page
+\logo{\includegraphics[height=1cm]{logos/logocn.png}}
+
+\usepackage{booktabs,latexsym,amssymb,wasysym}
+
+\hypersetup{colorlinks,linkcolor=,urlcolor=Color3}
+
+
+\useoutertheme{split}
+\usecolortheme{whale}
+\usecolortheme{orchid}
+\useinnertheme[shadow]{rounded}
+
+% to disable the navigation bar
+\setbeamertemplate{navigation symbols}{}
+
+% standard slide : title
+\setbeamercolor{frametitle}{bg=WhiteCN,fg=IndigoCN}
+
+\setbeamercolor{palette primary}{bg=IndigoCN,fg=WhiteCN}
+\setbeamercolor{palette secondary}{bg=Color2}
+\setbeamercolor{palette tertiary}{bg=Color3}
+\setbeamercolor{palette quaternary}{bg=IndigoCN}
+
+\setbeamercolor{normal text}{fg=IndigoCN}
+\setbeamercolor{block title}{bg=YellowCN}
+\setbeamercolor{example text}{fg=BlueCN}
+\setbeamercolor{alerted text}{fg=Color1}
+
+\setbeamercolor{item}{parent=normal text}
+\setbeamercolor{section in toc}{fg=BlueCN}
+
+% title blocks: can be better depending on selected colors
+%\setbeamercolor{titlelike}{bg=Color2,fg=white}
+
+
+
+%update on slide title
+\setbeamerfont{frametitle}{series=\bfseries}
+%\setbeamertemplate{frametitle}{
+%      \expandafter\MakeUppercase\expandafter\insertframetitle
+%}
+\setbeamertemplate{frametitle}{
+\includegraphics[height=4.2pt]{logos/traitjaune.png} \\ \insertframetitle}
+
+%subtitle for some frames
+\setbeamercolor{framesubtitle}{fg=YellowCN}
+\addtobeamertemplate{frametitle}{}{%
+  \ifx\insertframesubtitle\@empty\else%
+  \usebeamerfont{framesubtitle}%
+  \usebeamercolor[fg]{framesubtitle}%
+  \\ \insertframesubtitle%
+  \fi%
+}
+
+\newcommand{\code}[1]{\textcolor{BlueCN}{\footnotesize{\texttt{#1}}}}
+\newcommand{\entity}[1]{\textcolor{Color2}{#1}}
+\newcommand{\good}{\textcolor{green}{\smiley}}
+\newcommand{\bad}{\textcolor{red}{\frownie}}
+
+% Does not work when generated from markdown using pandoc
+%\AtBeginPart{\frame{\partpage}}
+%
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Plan}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
+
+% This is the correct way to get the frame number in the footline,
+% by modifying beamerouterthemesplit footline.
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+    \usebeamerfont{date in head/foot}
+    \hfill\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}
+}
