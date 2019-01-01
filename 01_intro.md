@@ -325,3 +325,30 @@
 - Analysis: a DB is a representation of a part of reality which is of interest
 
 \center{\includegraphics[width=.6\textwidth]{fig/analysis.pdf}}
+
+## Abstraction
+
+- From perceived reality to representation
+
+\center{\includegraphics[width=.6\textwidth]{fig/summary-1.pdf}}
+
+## Definition of the conceptual schema
+
+- A schema is a collection of stereotypes
+- The database will contain the values representing the instances of those stereotypes
+
+\center{\includegraphics[width=.6\textwidth]{fig/ea-model.pdf}}
+
+## Definition of the physical schema
+
+- Translation to a logical model
+- Then to a physical model
+
+\center{\includegraphics[width=.8\textwidth]{fig/ea-model2.pdf}}
+
+## Implementation of the physical schema
+
+- Choose a DBMS (compatible with the physical schema)
+- Implement the physical model into the DBMS
+
+\center{\includegraphics[width=.8\textwidth]{fig/ea-model3.pdf}}
