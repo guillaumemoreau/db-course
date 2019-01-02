@@ -1,6 +1,6 @@
 .PHONY: clean withversion run
 
-MDFILES=00_intro.md 01_intro.md 
+MDFILES=00_intro.md 01_intro.md 02_mf.md 
 
 INPUT=slides.md
 OUTPUT=slides.pdf
