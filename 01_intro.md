@@ -43,7 +43,7 @@
 
 ## Example
 
-> A rental store has several device types for rent. Devices as well
+> A rental store has several device types for rent. Devices as well as
 > their type are designated by a number and have a label. Every device type
 > has a rental rate. Devices may be rented by customers, identified by a number
 > and whose name and address are known. A customer may rent several devices.
