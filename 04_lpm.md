@@ -19,7 +19,7 @@
 - Data physical model
   - it is a formalism that allows to specify the storage system used in a DBMS
 
-# From the E-A model to the relational model
+## From the E-A model to the relational model
 
 ### Entity-Association model
 
@@ -93,6 +93,9 @@
 ### Logical data model
 
 \center\includegraphics[width=.8\textwidth]{fig/lpm-4.pdf}
+
+## From the logical model to the physical model
+
 
 ### From the logical model to the physical model
 

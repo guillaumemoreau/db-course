@@ -2,8 +2,6 @@
 % Guillaume Moreau
 % January 2019
 
-# Introduction
-
 ### Database course
 
 - Contents

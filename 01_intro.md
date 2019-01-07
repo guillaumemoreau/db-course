@@ -1,3 +1,5 @@
+
+
 # Introduction
 
 ### History
@@ -39,7 +41,9 @@
 - noSQL has appeared
 - Big Data impact
 
-# Problem statement
+
+## Problem statement
+
 
 ### Example
 
@@ -96,7 +100,7 @@
 \center{\includegraphics[height=.65\textheight]{fig/is.pdf}}
 
 
-# Databases
+## Databases
 
 ### Definitions
 
@@ -258,7 +262,7 @@
 - Note: it may happen that you will have to update a database schema for which you do not have all documents
   - reverse engineering
 
-# Database Management Systems (DBMS)
+## Database Management Systems (DBMS)
 
 ### DBMS
 
