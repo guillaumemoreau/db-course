@@ -1,6 +1,6 @@
 # Introduction
 
-## History
+### History
 
 - 1950-1960: files started to be stored on computers
   - required access methods and file organization
@@ -9,7 +9,7 @@
   - Direct access
   - required file structuring
 
-## History
+### History
 
 - Companies needs
   - financial data, business data, technical data, production data...
@@ -17,7 +17,7 @@
 - 1962: the Database concept
 
 
-## History of databases
+### History of databases
 
 - 1st generation: based on access models
   - separation between data + navigation access language
@@ -33,7 +33,7 @@
   - XML
   - ...
 
-## To date
+### To date
 
 - Relational databases take the biggest share of the database related activity
 - noSQL has appeared
@@ -41,7 +41,7 @@
 
 # Problem statement
 
-## Example
+### Example
 
 > A rental store has several device types for rent. Devices as well as
 > their type are designated by a number and have a label. Every device type
@@ -51,39 +51,39 @@
 > the rent start date and duration are stored. Customers who have forgotten
 > to give back their devices will be contacted and billed.
 
-## Step 1: modeling
+### Step 1: modeling
 
 - Conceptual data model
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-1.pdf}}
 
-## Step 2: transformation into a logical model
+### Step 2: transformation into a logical model
 
 - Logical model
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-2.pdf}}
 
-## Step 3: Adding type information
+### Step 3: Adding type information
 
 - Physical model of data
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-3.pdf}}
 
-## Step 4: Translation
+### Step 4: Translation
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-4.pdf}}
 
-## Step 5: Implementation
+### Step 5: Implementation
 
 - The database can now be populated and used
 
 \center{\includegraphics[height=.55\textheight]{fig/cmodel-5.pdf}}
 
-## Operating
+### Operating
 
 \center{\includegraphics[height=.65\textheight]{fig/cmodel-6.pdf}}
 
-## Definitions
+### Definitions
 
 - **Modeling** is the activity which consists in elaborating a structured representation of reality
 - A **database** is a **representation** of a part of the real world which is of interest for users and applications
@@ -91,14 +91,14 @@
 - The definition of those structures is stored in the **schema** of a database
 
 
-## Information system
+### Information system
 
 \center{\includegraphics[height=.65\textheight]{fig/is.pdf}}
 
 
 # Databases
 
-## Definitions
+### Definitions
 
 > 'Structured set of data recorded on devices a computer can access to simultaneously satisfy several users in a selective way and at the right time[^da]'
 
@@ -111,7 +111,7 @@
 [^mo]: Morejon
 [^ga]: Gardarin
 
-## Criteria
+### Criteria
 
 1. Good representation of the real world
 2. No redundancy of information
@@ -120,7 +120,7 @@
 5. Performance of applications and queries
 
 
-## Deploying a database
+### Deploying a database
 
 1. Determine and identify the problem
 2. Propose possible solutions
@@ -129,7 +129,7 @@
 5. Test the solution
 6. Maintain and improve the system
 
-## Determine and identify the problem
+### Determine and identify the problem
 
 - What problem are you modeling?
 - What are the boundaries of the problem?
@@ -139,51 +139,51 @@
 - What data? Which processings?
 - What are the constraints?
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-1.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-2.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-3.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-4.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-5.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-6.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-7.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-8.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-9.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-10.pdf}}
 
-## Gathering information
+### Gathering information
 
 \center{\includegraphics[width=.8\textwidth]{fig/info-11.pdf}}
 
-## How to collect information?
+### How to collect information?
 
 - Written documents
   - existing documents (bills, forms...)
@@ -197,7 +197,7 @@
   - quantitative
     - numbers of computers, servers, forms, processed documents, processing times...
 
-## Propose possible solutions
+### Propose possible solutions
 
 - Ask questions to the future users
 - Gather documents
@@ -205,13 +205,13 @@
 - Dictionary of the terminology
 - *Validate* upon users and managers
 
-## Model the system
+### Model the system
 
 - Structure information
 - Model information (conceptual model)
 - *Validate* upon users and managers
 
-## Conceptual model
+### Conceptual model
 
 - Independent from technologies
   - portability
@@ -225,7 +225,7 @@
 - Facilitates information exchange between several DB systems
 
 
-## Designing a solution
+### Designing a solution
 
 - Translate the conceptual model into a logical model
 - Add types to complete the physical model
@@ -235,7 +235,7 @@
 - If required, add internal functions
 - Add security elements
 
-## Test the solution
+### Test the solution
 
 - Setup a test database
 - Add information
@@ -245,7 +245,7 @@
 - Test for security
 
 
-## Maintain and improve the system
+### Maintain and improve the system
 
 - Correct errors if any
 - If new constraints arise, update the database schema
@@ -260,7 +260,7 @@
 
 # Database Management Systems (DBMS)
 
-## DBMS
+### DBMS
 
 - Software used to organize and handle data
 - Main functions
@@ -270,7 +270,7 @@
   - Ensure data integrity and confidentiality
   - Optimize data access
 
-## DBMS
+### DBMS
 
 - Characterized by the supported data model
   - 1st generation
@@ -283,7 +283,7 @@
     - based on the object model
     - SQL3 and others...
 
-## DBMS users
+### DBMS users
 
 - System engineer
   - Maintenance, backups & restores
@@ -298,7 +298,7 @@
   - uses the DB to obtain information
   - query language
 
-## A few DBMS examples
+### A few DBMS examples
 
 - Oracle
 - SQL Server
@@ -310,7 +310,7 @@
 - ...
 
 
-## Using a DBMS
+### Using a DBMS
 
 - Setting up the DBMS
   - installation
@@ -320,33 +320,33 @@
 - Dialog between the software through Internet
   - data manipulation language
 
-## Summary
+### Summary
 
 - Analysis: a DB is a representation of a part of reality which is of interest
 
 \center{\includegraphics[width=.6\textwidth]{fig/analysis.pdf}}
 
-## Abstraction
+### Abstraction
 
 - From perceived reality to representation
 
 \center{\includegraphics[width=.6\textwidth]{fig/summary-1.pdf}}
 
-## Definition of the conceptual schema
+### Definition of the conceptual schema
 
 - A schema is a collection of stereotypes
 - The database will contain the values representing the instances of those stereotypes
 
 \center{\includegraphics[width=.6\textwidth]{fig/ea-model.pdf}}
 
-## Definition of the physical schema
+### Definition of the physical schema
 
 - Translation to a logical model
 - Then to a physical model
 
 \center{\includegraphics[width=.8\textwidth]{fig/ea-model2.pdf}}
 
-## Implementation of the physical schema
+### Implementation of the physical schema
 
 - Choose a DBMS (compatible with the physical schema)
 - Implement the physical model into the DBMS

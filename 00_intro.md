@@ -4,7 +4,7 @@
 
 # Introduction
 
-## Database course
+### Database course
 
 - Contents
   - Lectures
@@ -16,7 +16,7 @@
 - Course material
   - On *hippocampus*
 
-## Goals
+### Goals
 
 - Analyze information
 - Build schemas for relational databases
@@ -28,7 +28,7 @@
 - Programming inside a relational database
 - Gain insight about other databases types
 
-## Course outline
+### Course outline
 
 - Introduction
 - Functional modeling
