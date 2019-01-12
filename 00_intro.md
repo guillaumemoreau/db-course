@@ -39,6 +39,10 @@
 - Business Intelligence
 - noSQL - Big Data
 
+### Credits
+
+Most of the slides used in this course are based on Jean-Yves Martin's database course (translated to English).
+
 ### Table of contents
 
 \tableofcontents

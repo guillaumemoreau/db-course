@@ -409,7 +409,7 @@ What are the neighbors of Cantal (15)?
 
 Which département has the best Digital TV coverage?
 
-\center\includegraphics[height=3cm]{fig/cartefrance.png} \includegraphics[height=3cm]{fig/tnt.png}
+\center\includegraphics[height=4cm]{fig/cartefrance.png} \includegraphics[height=4cm]{fig/tnt.png}
 
 
 ### Summary
