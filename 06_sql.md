@@ -180,3 +180,235 @@ WHERE constraintslist
 - *OR* between conditions
   - `condition1 OR condition2`
 - parentheses can of course be applied
+
+### Example
+
+**Student**  Lastname      Firstname   StudentId      Birthdate
+-----------  ------------- ---------   ------------   ---------
+             AUBRY         Delphine    090146C        02/02/90
+             AUBRY         Stéphane    090023A        17/02/90
+             BROSSE        Alexandre   090341X        10/01/91
+             AUBRY         Delphine    090225W        20/05/90
+
+~~~SQL
+SELECT Lastname,Firstname FROM Student
+  WHERE Birthdate = '17/02/90'
+~~~
+
+**Student**  Lastname      Firstname
+-----------  ------------- ---------
+             AUBRY         Stéphane  
+
+
+### Strings
+
+- Strings in SQL are enclosed between quotes
+  - `'this is a string'`
+  - if a quote is used in a string, it must be doubled (some DBMS accept C-like escaping such as `\'`)
+  - `'I''am the best'`
+- Equality checks are case sensitive
+  - i.e. `'Test'` is not equal to `'test'`
+- Lexicographic order is used
+
+
+### LIKE
+
+- A specific operator for character strings
+- `attribute LIKE 'string'`
+  - `attribute` is equal to `'string'` which may contain jokers
+    - % replaces any character string
+    - _ replaces one single character
+- Some DBMS also have `ILIKE` operator which is case insensitive
+
+
+### Example
+
+**Student**  Lastname      Firstname   StudentId      Birthdate
+-----------  ------------- ---------   ------------   ---------
+             AUBRY         Delphine    090146C        02/02/90
+             AUBRY         Stéphane    090023A        17/02/90
+             BROSSE        Alexandre   090341X        10/01/91
+             AUBRY         Delphine    090225W        20/05/90
+
+~~~SQL
+SELECT Lastname,Firstname FROM Student
+  WHERE Lastname LIKE 'B%'
+~~~
+
+**Student**  Lastname      Firstname  
+-----------  ------------- ---------  
+             BROSSE        Alexandre  
+
+
+### NULL
+
+- `attribute IS NULL` tests whether `attribute` does not have a value
+  - converse: `attribute IS NOT NULL`
+  - beware of using null in composed conditions
+
+### IN
+
+- `attribute IN ( valueslist )`
+- is equivalent to `attribute=v1 OR attribute=v2 OR ...`
+  - where `valueslist = v1,v2...`
+  - Note: the value list can be the result of a query itself
+- conversely, you can use `attribute NOT IN ( valueslist )`
+
+
+### Example
+
+**Student**  Lastname      Firstname   StudentId      Birthdate
+-----------  ------------- ---------   ------------   ---------
+             AUBRY         Delphine    090146C        02/02/90
+             AUBRY         Stéphane    090023A        17/02/90
+             BROSSE        Alexandre   090341X        10/01/91
+             AUBRY         Delphine    090225W        20/05/90
+
+~~~SQL
+SELECT Lastname,Firstname FROM Student
+  WHERE Firstname IN ('Alexandre','Delphine')
+~~~
+
+**Student**  Lastname      Firstname   
+-----------  ------------- ---------   
+             AUBRY         Delphine    
+             BROSSE        Alexandre   
+             AUBRY         Delphine    
+
+### Dates
+
+- Dates and times use a special format
+  - DATE: YYYY-MM-DD
+  - TIME: HH:MM:SS
+  - TIMESTAMP: YYYY-MM-DD HH:MM:SS
+  - they are specific types but are used as strings
+    - this organization allows comparison between dates
+  - Example: 2019-01-14 13:45:22
+- Lots of functions to work on dates (including timezones issues)
+
+### Join
+
+~~~sql
+SELECT listofattributes
+FROM tablelist
+WHERE constraintslist
+~~~
+
+- Is doing the cartesian product between the indicated tables, applies the constraints and selects the indicated columns
+- Beware of ambiguities
+  - Some attributes may have the same name in several tables
+  - Attributes name can be prefixed or suffixed by their table name
+- If a table is to appear several time in a join?
+  - tables can be renamed
+  - same table appears several times  with different names  
+
+### Examples
+
+~~~sql
+SELECT LastName, StudentId
+FROM Person,Student
+WHERE Person.Person_ID = Student.Person_ID
+AND LastName LIKE 'D%'
+
+SELECT LastName
+FROM Person, Student, Faculty
+WHERE Person.Person_ID = Student.Person_ID
+  AND Person.Person_ID = Faculty.Person_ID
+  ~~~
+
+
+### Renaming table example
+
+- Where were the students living in Paris born?
+- Student(\underline{StudentId},Lastname,Firstname,Birthcity_ID,LivingCity_ID)
+- City(\underline{City\_ID},CityName)
+
+
+. . .
+
+~~~sql
+SELECT LastName, City1.Name
+FROM Person, City City1, City City2
+WHERE Person.Birthcity_ID = City1.City_ID
+  AND Person.LivingCity_ID = City1.City_ID
+  AND City2.Name = 'Paris'
+~~~
+
+### Renaming columns
+
+- It can be practical to rename columns
+- Use the `AS` operator
+  - *newname* `AS` *oldname*
+- Example
+
+~~~sql
+SELECT Person_ID,Name as Person.Person_Name
+FROM Person
+WHERE Person.Person_Name = 'Jack'
+~~~
+
+### Join types (SQL2)
+
+- Cartesian-product
+~~~sql
+R1 CROSS JOIN R2
+~~~
+- Theta-join
+~~~sql
+R1 INNER JOIN ON (R1.A < R2.B)
+~~~
+- Natural Join
+~~~sql
+R1 NATURAL JOIN R2
+~~~
+- Note: `SELECT ... FROM R1,R2` is a Cartesian-product
+
+### Natural join
+
+- Given the following relations
+  - *Person(\underline{Person\_ID},LastName,FirstName)*
+  - *Student(\underline{Student\_ID},Person_ID,Number)*
+
+~~~sql
+SELECT LastName, Number
+FROM Person NATURAL JOIN Student
+~~~
+
+- All common attributes are taken into account
+- The join constraint is performed on **attributes names**
+  - caution : all common attributes are involved
+
+### Result: natural join
+
+\center\includegraphics[width=\textwidth]{fig/naturaljoin.png}
+
+### Outer join
+
+\center\includegraphics[width=\textwidth]{fig/outerjoin.png}
+
+### Left outer join
+
+\center\includegraphics[width=\textwidth]{fig/leftouterjoin.png}
+
+### Right outer join
+
+\center\includegraphics[width=\textwidth]{fig/rightouterjoin.png}
+
+
+### Theta-join
+
+- Given the following relations
+  - *Person(\underline{Person\_ID},LastName,FirstName)*
+  - *Student(\underline{Student\_ID},Person_ID,Number)*
+
+~~~sql
+SELECT LastName, Number
+FROM Person JOIN Student ON (Person.LastName < 'B')
+~~~
+
+- The join is performed by following the indicated predicate
+- Full, right and left outer join can be applied to theta-join
+
+~~~sql
+R1 (FULL | RIGHT | LEFT) OUTER JOIN R2 ON predicate
+~~~
