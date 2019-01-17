@@ -412,3 +412,320 @@ FROM Person JOIN Student ON (Person.LastName < 'B')
 ~~~sql
 R1 (FULL | RIGHT | LEFT) OUTER JOIN R2 ON predicate
 ~~~
+
+### Unions
+
+- The `UNION` operator performs the union of two tables
+- All duplicates are removed. If you want to keep them, use `UNION ALL`
+
+~~~SQL
+(SELECT Person.LastName
+  FROM Person, Student
+  WHERE Person.Person_ID = Student.Person_ID
+)
+UNION
+(SELECT Person.LastName
+  FROM Person, Faculty
+  WHERE Person.Person_ID = Faculty.Person_ID
+)
+~~~
+
+### Differences (non standard)
+
+- The `EXCEPT` operator performs the difference (as defined in relational algebra) between two tables
+- It is **not** implemented in every database engine
+
+~~~sql
+(SELECT Person.LastName FROM Person, Student
+  WHERE Person.Person_ID = Student_PersonID)
+EXCEPT
+  (SELECT Person.LastName
+    FROM Person, Faculty
+    WHERE Person.Person_ID = Faculty.Person_ID)
+~~~
+
+### Intersection (non standard)
+
+- The `INTERSECT` operator performs the intersection between two tables
+- It is **not** implemented in every database engine
+
+~~~sql
+(SELECT Person.LastName FROM Person, Student
+  WHERE Person.Person_ID = Student_PersonID)
+INTERSECT
+  (SELECT Person.LastName
+    FROM Person, Faculty
+    WHERE Person.Person_ID = Faculty.Person_ID)
+~~~
+
+### Embedded queries: IN
+
+- The result of a `SELECT` is a temporary table
+- It can be used in another `SELECT`
+- The included selection should have only **one** column
+
+~~~sql
+SELECT LastName
+FROM Person
+WHERE Person_ID IN (SELECT Person_ID FROM Student)
+
+SELECT LastName
+FROM Person
+WHERE Person_ID NOT IN (SELECT Person_ID FROM Faculty)
+AND Person_ID IN (SELECT Person_ID FROM Student)
+~~~
+
+### Embedded queries: ANY
+
+- `ANY` is used to compare an attribute to a set of values obtained by an embedded query
+- the `ANY (SELECT F FROM ...)` condition is true if and only if the comparison is true for at least a value of the result of the `(SELECT F FROM ...)`
+- Note: `IN` and `= ANY` are equivalent
+
+
+~~~SQL
+SELECT Provider
+FROM Hardware
+WHERE Name = 'Brick'
+AND Price < ANY (SELECT Price FROM Hardware
+  WHERE Name = 'Slate')
+~~~
+
+### Embedded queries: ALL
+
+- `ALL` is used to compare an attribute to a set of values obtained by an embedded query
+- The `ALL (SELECT F FROM ...)` condition is true if and only if the comparison is true for all the values of the result of the `(SELECT F FROM ...)`
+- Note: `NOT IN` and `NOT = ALL` are equivalent
+
+
+~~~sql
+SELECT Provider
+FROM Hardware
+WHERE Name = 'Brick'
+AND Price < ALL (SELECT Price FROM Hardware
+  WHERE Name = 'Slate')
+~~~
+
+### Embedded queries: EXISTS
+
+- `EXISTS` allows to check that the result of a query is non empty
+- The `EXISTS(SELECT * FROM ...)` is true if and only if the result of the `(SELECT * FROM ...)` is not empty
+
+~~~SQL
+SELECT Provider
+FROM Hardware
+WHERE EXISTS (SELECT *
+  FROM Provider
+  WHERE ProviderName = Provider.Name)
+~~~
+
+## Aggregation functions
+
+### Example
+
+- We want average grades per group
+- Here is the Grades table
+
+Group  |    Grade | \underline{StudentId}
+--|---|--
+A  | 10  | 090146C
+A  | 12  | 090023A
+A  | 16  | 090341X
+B  | 10  | 091234A
+C  | 8  | 095432S
+A  | 4  | 099875D
+B  | 19  |  098743M
+A  | 15  | 093489F
+
+
+### Example
+
+Group  |    Grade | \underline{StudentId}
+--|---|--
+\textcolor{blue}{A}  | \textcolor{blue}{10}  | \textcolor{blue}{090146C}
+\textcolor{blue}{A}  | \textcolor{blue}{12}  | \textcolor{blue}{090023A}
+\textcolor{blue}{A}  | \textcolor{blue}{16}  | \textcolor{blue}{090341X}
+\textcolor{green}{B}  | \textcolor{green}{10}  | \textcolor{green}{091234A}
+\textcolor{red}{C}  | \textcolor{red}{8}  | \textcolor{red}{095432S}
+\textcolor{blue}{A}  | \textcolor{blue}{4}  | \textcolor{blue}{099875D}
+\textcolor{green}{B}  | \textcolor{green}{19}  |  \textcolor{green}{098743M}
+\textcolor{blue}{A}  | \textcolor{blue}{15}  | \textcolor{blue}{093489F}
+
+### Example
+
+Group  |    Grade | \underline{StudentId}
+--|---|--
+\textcolor{blue}{A}  | \textcolor{blue}{10}  | \textcolor{blue}{090146C}
+\textcolor{blue}{A}  | \textcolor{blue}{12}  | \textcolor{blue}{090023A}
+\textcolor{blue}{A}  | \textcolor{blue}{16}  | \textcolor{blue}{090341X}
+\textcolor{blue}{A}  | \textcolor{blue}{4}  | \textcolor{blue}{099875D}
+\textcolor{blue}{A}  | \textcolor{blue}{15}  | \textcolor{blue}{093489F}
+\textcolor{green}{B}  | \textcolor{green}{10}  | \textcolor{green}{091234A}
+\textcolor{green}{B}  | \textcolor{green}{19}  |  \textcolor{green}{098743M}
+\textcolor{red}{C}  | \textcolor{red}{8}  | \textcolor{red}{095432S}
+
+### GROUP BY
+
+- `GROUP BY` allows to group tuples according to the values of an attribute1
+- generally used with aggregation functions
+
+~~~sql
+SELECT Group, avg(Grade)
+FROM GradesList
+GROUP BY Group
+~~~
+
+- allows to group tuples by *Group* and thus to compute the average of each group
+
+### Example
+
+Group  | Grade  
+--|--
+\textcolor{blue}{A}   |  \textcolor{blue}{11.4}
+\textcolor{green}{B}  |  \textcolor{green}{14.5}
+\textcolor{red}{C}   |  \textcolor{red}{8}
+
+### Aggregation functions
+
+- They allow to group lines into subgroups to apply computations to **each** of the subgroups
+- When `GROUP BY` is used, **all** columns that do not participate into the computation **must** appear in the `GROUP BY`
+- Caution: function combinations are mostly impossible (`max(count(...))`)
+
+~~~sql
+SELECT Year, Group, avg(grade)
+FROM GradesList
+GROUP BY Year, Group
+~~~
+
+### Aggregation functions: HAVING
+
+- `GROUP BY ... HAVING ...` allows to perform selection among the tuples that have been grouped
+
+~~~sql
+SELECT group, avg(grade)
+FROM GradesList
+GROUP BY Group HAVING count(*) > 5
+~~~
+
+- same as before but only for groups of 5 or more grades
+
+### Aggregation functions avalaible
+
+- `AVG`: average
+- `COUNT`: number of lines
+- `MAX`: maximum
+- `MIN`: minimum
+- `SUM`: sum
+- in fact, most DBMS propose more, not always portable
+
+
+### Functions: count
+
+- `count(...)` counts the number of tuples in a relation
+
+~~~sql
+SELECT count(*)
+FROM Personne, Eleve
+WHERE Personne.Personne_ID=Eleve.Personne_ID
+
+SELECT count(DISTINCT Personne.Nom)
+FROM Personne, Eleve
+WHERE Personne.Personne_ID=Eleve.Personne_ID
+~~~
+
+### Functions: sum
+
+- `sum(...)` sums the values of an attribute
+- `avg(...)` computes the average of the values of an attribute
+- other functions: `min(...)`, `max(...)`...
+
+~~~sql
+SELECT sum(Price)
+FROM Order
+WHERE CustomerName = 'John Doe'
+
+SELECT avg(Grade)
+FROM Grades
+WHERE Group='B1'
+~~~
+
+### Other useful functions
+
+- `UPPER` puts an attribute or a value in upper case letters
+- `LOWER` is the symetric function
+- `TO_DATE` converts a string into a date
+  - example: `TO_DATE('2017-11-17','YYYY-MM-DD')`
+- `EXTRACT` extracts an information from a date (non standard)
+  - `EXTRACT(MONTH FROM thedate)`
+  - `EXTRACT(HOUR FROM event)`
+- `CONCAT` is used to append strings
+- `SUBSTRING` extracts a substring of a string
+- `TRIM` removes the space at the begin and at the end of a value
+  - see also `LTRIM` and `RTRIM`
+
+### Dates, times and timestamps
+
+- Information extraction: 'EXTRACT'
+  - can be applied to `DATE`, `TIME`, `TIMESTAMP` types
+  - Data that can be extracted
+    - `CENTURY`, `DECADE`
+    - `YEAR`,`MONTH`,`DAY` (of the month)
+    - `DOW`(day of the week)
+    - `HOUR`, `MINUTE`, `SECOND`
+    - `MICROSECOND`
+    - `TIMEZONE`
+    - ...
+- More in the SQL documentation
+
+
+### Quotes and double quotes
+
+- By default, all tables and columns names are converted by the DBMS
+  - i.e. `PERSON` = `Person` = `person` = `PeRsOn`
+- If names have forced (with double quotes), case must enforced
+  - `"PERSON"` is not equal to `"Person"`
+
+
+### Sorting tuples: ORDER BY
+
+- `ORDER BY` is used to sort tuples according to the values of one or several attributes (by any order)
+  - `ASC` (default) sorts by ascending order
+  - `DESC` sorts by descending order
+
+~~~SQL
+SELECT Person.LastName, City.Name
+FROM Person, City
+WHERE Person.Birthcity_ID = City.City_ID
+ORDER BY City.Name, Person.LastName DESC
+~~~
+
+### Cast operator
+
+- The results of a query are mapped to the schema of the result relation.
+  - i.e. a colum in a select has the same type as the original column
+- In some cases, it may not work, the type of a column may be changed (cast) to another one
+  - `CAST(expression AS type)`
+  - will convert expression to the new type, provided the operation is technically possible
+- Example
+
+~~~sql
+SELECT Name,CAST(BirthDate AS VARCHAR) FROM Person
+~~~
+
+
+### SQL Queries
+
+- Eventually SQL queries look like
+
+~~~sql
+SELECT column-list
+FROM table-list-with-joins
+WHERE join-conditions
+GROUP BY column-list-for-aggregation  
+HAVING aggregation-conditions
+ORDER BY sorting-columns-list
+~~~
+
+- plus potential `UNION`...
+- Evolutions
+  - `WITH`: ability to define temporary tables
+  - `WITH RECURSIVE`: same including recursion
