@@ -729,3 +729,99 @@ ORDER BY sorting-columns-list
 - Evolutions
   - `WITH`: ability to define temporary tables
   - `WITH RECURSIVE`: same including recursion
+
+## Building SQL queries
+
+### How to build a query
+
+- Methodological elements
+  1. Start from the database schema (all the relations)
+  2. Identify in the schema the properties you wish to obtain
+  3. Add the properties on which you have constraints
+  4. Establish a path between the relations that link those information
+
+### Who are the students following the SSTEM course?
+
+  \center\includegraphics[width=\textwidth]{fig/sstemstudents.png}
+
+### Step 1
+
+  \center\includegraphics[width=\textwidth]{fig/sstemstudents2.png}
+
+### Step 2
+
+  \center\includegraphics[width=.8\textwidth]{fig/sstemstudents3.png}
+
+  . . .
+
+  ~~~sql
+  SELECT Student.LastName, Student.FirstName
+  FROM Student
+  NATURAL JOIN Follows
+  NATURAL JOIN Course
+  WHERE Abb = 'SSTEM'
+  ~~~
+
+## Modifying data
+
+### Modifying data
+
+- 3 statement types
+  - `INSERT`: adding lines
+  - `UPDATE`: updating lines
+  - `DELETE`: removing lines
+- Each of these statements can be applied to only and only table at a times
+
+
+### Insertion
+
+- `INSERT INTO TABLE(attr1, attr2,...) VALUES (val1, val2,...)`
+- Mapping elements is done with regard to the position in the list
+- Every non-included value will be `NULL`
+- If the key already exists, insertion will lead to an error
+- If a `NOT NULL` attribute is not present in the attribute list, insertion will lead to an error
+- Example
+
+~~~sql
+INSERT INTO Student(StudentId,Lastname,Firstname)
+  VALUES ('CN9023','HUBBLE','Damien')
+~~~
+
+### Alternative syntax
+
+- `INSERT INTO table VALUES (val1,val2,...)`
+- the mapping is done with regard to the order of definition of the columns in the schema
+- Caution: when the schema is updated, those insert queries can cause trouble!
+
+### Multiple insertion
+
+- `INSERT INTO table(attr_list) VALUES (value_list1),(value_list2),...`
+- is used to insert several values at a time
+- Example
+
+~~~sql
+INSERT INTO Student(StudentId,Lastname,Firstname)
+  VALUES ('CN9023','HUBBLE','Damien'),
+    ('RF4322','MARTIN','Eléonore')
+~~~
+
+### Insertion from a SELECT
+
+- `INSERT INTO table(attr_list) SELECT attr_list FROM ... WHERE ...`
+- All lines obtained by the selection are included in the table
+- The table schema must match the the column of the temporary table obtained through SELECT
+- Example
+
+~~~sql
+INSERT INTO BornIn92(StudentId,Lastname,Firstname)
+SELECT StudentId,Lastname,Firstname FROM Student
+WHERE Birthdate BETWEEN '1992-01-01' AND '1992-12-31'
+~~~
+
+### DBMS specificities
+
+- Oracle, PostgreSQL
+  - there exists a `RETURNING` statement to return a column (primary key) of the line created by the INSERT STATEMENT
+  - `INSERT INTO table(attr_list) VALUES (valueslist) RETURNING a column`
+- MySQL
+  - The same can be done with `LAST_INSERT_ID`
