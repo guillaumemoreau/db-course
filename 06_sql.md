@@ -825,3 +825,123 @@ WHERE Birthdate BETWEEN '1992-01-01' AND '1992-12-31'
   - `INSERT INTO table(attr_list) VALUES (valueslist) RETURNING a column`
 - MySQL
   - The same can be done with `LAST_INSERT_ID`
+
+### Updating
+
+- `UPDATE table SET list_assignements [WHERE conditions]`
+- `list_assignements`
+  - `attr1 = val1, attr2 = val2, ...`
+- Update is working on only one table
+- If the conditions return no tuple, no update is performed
+- If the conditions return several tuples, all matched lines are updated
+- Example
+
+~~~sql
+UPDATE Person SET Firstname = 'Alexis' WHERE Person_ID = 2
+~~~
+
+### Removing
+
+- `DELETE FROM table [WHERE conditions]`
+- Removals are performed on zone, one or several lines depending on the conditions
+- Remove all lines matching the conditions
+- If no line is matching the conditions, nothing is done
+- Example
+
+~~~sql
+DELETE FROM Person where Person_ID = 2
+~~~
+
+### Limitations
+
+- `INSERT, UPDATE, DELETE` work on only one table
+- For some operations (mostly updates and removals), it may be necessary to refer to several tables
+  - for example when referring to foreign keys
+- Several solutions
+  1. Embedded queries
+  2. joins (only on some DBMS)
+
+### Embedded queries
+
+~~~sql
+DELETE FROM Person WHERE Person_ID IN (
+  SELECT Person_ID
+  FROM Student
+  WHERE StudentId LIKE '03%'
+)
+~~~
+
+will remove all persons who are students whose student number starts by 03.
+
+### Joins
+
+~~~sql
+UPDATE Person
+SET Firstname = Student.StudentId
+FROM Student
+WHERE Person.Person_ID = Student.Person_ID
+AND Numero LIKE '04%'
+~~~
+
+### Transactions
+
+- Updates (all types) allow to modify the population of a table
+- Problem
+  - A user is barely the only one to use a table at a given instant
+  - What may happen when several users update the database at the same time?
+
+
+### Example
+
+User 1
+
+~~~sql
+UPDATE Person SET Lastname=‘ALBAN’ WHERE Firstname=‘Alexis’;
+UPDATE Person SET Lastname=‘BLANC’ WHERE Firstname=‘Roger’;
+~~~
+
+. . .
+
+User 2
+
+~~~sql
+UPDATE Person SET Firstname=‘Alexis’ WHERE Lastname=‘ALBAN’;
+UPDATE Person SET Firstname=‘Roger’ WHERE Lastname=‘BLANC’;
+~~~
+
+. . .
+
+Looks good if everything is executed sequentially (1 after 2 or 2 after 1). But what if lines are executed in a random order?
+
+
+### Transactions
+
+- What is the problem?
+  - Each set of query transforms the DB from a consistent state to another consistent step
+  - This is not true anymore if the statements are mixed
+- Solution: ensure that each set of query is executed entirely before doing something else
+- `BEGIN ; query-list ; COMMIT;`: executes the queries and validates them
+- `BEGIN ; query-list ; ROLLBACK`: executes the queries and comes back to the initial state
+
+
+### Properties of transactions
+
+- ACID
+  - **A** tomicity: everything or nothing
+  - **C** consistency: switching to a consistent state to another consistent state
+  - **I** solation: The simultaneous execution of 2 transactions produces the same result as their sequential execution
+  - **D** urability: if a transaction is confirmed, its result is recorded into the database
+
+
+### Save points
+
+- It is possible in a transaction to define a save point (or several) which the system will be able to return to later in the same transaction
+
+~~~sql
+BEGIN;
+SAVEPOINT MyBeginning;
+UPDATE Person SET Firstname='Alexis' WHERE Lastname='ALBAN';
+ROLLBACK TO MyBeginning;
+UPDATE Person SET Firstname='Marc' WHERE Lastname='ALBAN';
+COMMIT;
+~~~
