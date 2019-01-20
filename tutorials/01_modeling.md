@@ -30,4 +30,4 @@ There may be several contacts in a given company.
 
 1. Build a conceptual data model on the basis of an Entity-Association schema
 2. The sales representatives of your company wish to have the list of their own contacts. Update your schema to include this information
-3. The CEO said that he wants the sales representatives share their contacts. However, the idea is not very well accepted, hence the following tradeoff: a sales representative will explicitely tell which other sales representatives will have access to his contacts. Note that only the owner of the contact has the right to share the contact. Update the schema accordingly.
+3. The CEO said that he wants the sales representatives share their contacts. However, the idea is not very well accepted, hence the following tradeoff: a sales representative will explicitly tell which other sales representatives will have access to his contacts. Note that only the owner of the contact has the right to share the contact. Update the schema accordingly.
