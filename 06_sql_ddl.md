@@ -397,3 +397,121 @@ CREATE TABLE Employee (
   - removes a table and its population
   - use with caution!
 - `CASCADE` allows to apply the `REFERENCIAL TRIGGER ACTION` `CASCADE` when the lines are removed
+
+### Update the table schema
+
+\scriptsize
+
+~~~sql
+ALTER TABLE table-name
+{ RENAME TO new-table-name |
+ADD ([(col-name col-type [DEFAULT value][col-constraint])*]) |
+MODIFY (nom-col [type-col] [DEFAULT valeur] [contrainte-col])* |
+DROP COLUMN nom-col [CASCADE CONSTRAINTS] |
+RENAME COLUMN old-name TO new-name
+}
+~~~
+
+### Update the table schema
+
+- Change a table name
+  - `RENAME`
+- Add a column or a constraint
+  - `ADD`
+- Modufy a column or a constraint
+  - `MODIFY`
+- Remove a column or a constraint
+  - `DROP`
+- Rename a column or a constraint
+  - `RENAME`
+
+### Examples
+
+- There are differences between DBMS...
+- PostgreSQL
+~~~sql
+ALTER TABLE ONLY table-name ADD CONSTRAINT keyname
+FOREIGN KEY (keyname) REFERENCES foreigntable(foreignkey)
+ON UPDATE RESTRICT
+ON DELETE RESTRICT;
+~~~
+- MySQL (this is not a real foreign key)
+~~~sql
+ALTER TABLE table ADD FOREIGN KEY (keyname)
+REFERENCES foreigntable(foreignkey);
+~~~
+
+
+### Indexes
+
+- Somes queries can run for a long time
+  - It is possible to use acceleration techniques
+  - indexing some columns
+    - creating a hastable on a column or a set of column
+  - Pros
+    - accelerates searches
+  - Cons
+    - uses space
+    - slows down inserts, removals and updates
+
+
+### How to setup indexes
+
+- An index is automatically created on every primary key!
+- explicitly (depends on the DBMS)
+- PostgreSQL
+~~~sql
+CREATE INDEX index-name ON table
+  USING btree (indexed-element);
+~~~
+- MySQL
+~~~sql
+ALTER TABLE table ADD INDEX index-name(indexed-element);
+~~~
+
+
+### Sequences
+
+
+- Specific key types
+  - integer which are automatically incremented
+  - useful for primary keys
+- mySQL
+  - transparent (`autoincrement`)
+- Other DBMS
+  - use sequences
+
+### Sequences
+
+- Specific entity with the following properties
+  - name
+  - value (last one)
+  - increment
+  - max value
+  - min value or initial value
+  - state (activated or not)
+- Access to a sequence is in mutual exclusion (two queries executed in parallel will get 2 distinct values)
+
+
+### Sequences
+
+- `CREATE SEQUENCE sequence-name`
+- 2 actions
+  - increment the counter
+  - get its value
+- Examples (PostgreSQL)
+~~~sql
+SELECT nextval(sequence-name) AS Value
+~~~
+
+### Example (autoincrement)
+
+~~~sql
+CREATE SEQUENCE s_depot;
+CREATE TABLE depot(
+  depot_id integer NOT NULL DEFAULT nextval('s_depot'),
+  address_id integer NOT NULL,
+  depot_name character varying(100),
+  CONSTRAINT pk_depot PRIMARY KEY (depot_id)
+);
+~~~
