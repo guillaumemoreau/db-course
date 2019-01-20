@@ -1,4 +1,3 @@
-# ONLY FOR TEST: REMOVE
 
 ## Data definition language
 
