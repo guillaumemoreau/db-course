@@ -17,7 +17,7 @@
 ### Logical and physical models
 
 - Data logical model
-  - it consists in describing the data structure that is used with referring to a specific programming language
+  - it consists in describing the data structure that is used without referring to a specific programming language
 - Data physical model
   - it is a formalism that allows to specify the storage system used in a DBMS
 
@@ -77,7 +77,7 @@
 
 ### Rule 3
 
-- The remaining associations are translated into relations. The identifiers of the linked entities are copied into the new relation and are its identifier
+- The remaining associations are translated into relations. The identifiers of the linked entities are copied into the new relation and are its identifiers
 - An external identifier is created between the new relation and each linked entity at the identifier level
 - The properties of the associations are also copied
 
