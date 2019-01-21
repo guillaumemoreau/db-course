@@ -61,7 +61,7 @@
 
 ### Rule 2
 
-- Every binary association which cardinality is either 0:1 or 1:1 is translated by copying the identifier of the opposite entity in the entity having 0:0 or 1:1 cardinality
+- Every binary association which cardinality is either 0:1 or 1:1 is translated by copying the identifier of the opposite entity in the entity having 0:1 or 1:1 cardinality
 - An external identifier is created between the two relations
 - The properties of the association are also copied
 - If the two involved cardinalities are 0:1 or 1:1, the most representative is chosen
