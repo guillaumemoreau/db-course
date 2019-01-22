@@ -25,6 +25,6 @@ run: $(OUTPUT)
 clean:
 	rm -f $(OUTPUT)
 
-test.pdf: 06_sql_ddl.md
-	cat 00_intro.md 06_sql_ddl.md > test.md
+test.pdf: 06_sql_dcl.md
+	cat 00_intro.md 06_sql_dcl.md > test.md
 	pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o test.pdf $(FONTOPTIONS)
