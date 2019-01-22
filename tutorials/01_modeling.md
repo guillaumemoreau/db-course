@@ -38,9 +38,9 @@ A printing shop is handling documents for several customers.
 
 Documents use the following formats: PDF, DOC, DOCX, PS, PAGES. They have a given number of pages (at least 1) in a variable format (A0 to A8, default is A4).
 
-Every customer has a customer number composed of two letters and 4 digits. Customers may be identified persons or companies. For every company there is a list of persons who hold an accreditation to give or take printing jobs. A person can be accredited to give jobs but not to get the results (and vice-versa).
+Every customer has a customer number composed of two letters and 4 digits. Customers may be identified as persons or companies. For every company there is a list of persons who hold an accreditation to give or withdraw printing jobs. A person can be accredited to give jobs but not to withdraw any order (and vice-versa).
 
-When a an order is placed, un customer will provide one or several documents. For each of them the provider gives the following details: number of copies, paper type (coated, offset or rigid) and binding type (3 types exist).
+When an order is placed, a customer will provide one or several documents. For each of them the provider gives the following details: number of copies, paper type (coated, offset or rigid) and binding type (3 types exist).
 
 Each order is associated to a bill; A bill contains the list of the jobs performed and the price for each job. The job price is established by multiplying the number of pages by a factor which is based on the paper type and the binding type. A global discount (in euros) may be granted. If this happens, it will appear on the bill.
 
