@@ -80,3 +80,85 @@
   - 0 or more (cross + arrow + circle)
 
 \center\includegraphics[height=.3\textheight]{fig/pa_006.jpg}
+
+
+### Link properties
+
+- Name of the link
+- Towards a key or not
+- Cardinalities with regard to both involved tables
+- Deferrability: when is the integrity constraint applied?
+- Constraints related to update and delete
+
+### Example
+
+\center\includegraphics[height=.8\textheight]{fig/pa_007.jpg}
+
+### SQL generation
+
+- Click on the SQL button
+
+\center\includegraphics[height=.15\textheight]{fig/pa_008.jpg}
+
+- Choose whether there is a DBMS connection (and which one if appropriate)
+
+\center\includegraphics[height=.35\textheight]{fig/pa_009.jpg}
+
+### SQL generation
+
+- If there are errors or warnings, they will be indicated
+- Note: is there are only errors on sequences, you can either click 'Ignore warnings' or 'Quick fix all'
+
+
+### Example
+
+\scriptsize
+
+~~~sql
+CREATE SEQUENCE myschema.person_person_id_seq;
+CREATE TABLE myschema.Person (
+                Person_id INTEGER NOT NULL DEFAULT
+                  nextval('myschema.person_person_id_seq'),
+                Person_firstname VARCHAR(30) NOT NULL,
+                Person_firstame VARCHAR(30),
+                Person_birthdate DATE NOT NULL,
+                CONSTRAINT person_pk PRIMARY KEY (Person_id)
+);
+ALTER SEQUENCE myschema.person_person_id_seq OWNED BY myschema.Person.Person_id;
+CREATE SEQUENCE myschema.student_student_id_seq;
+CREATE TABLE myschema.Student (
+                Student_ID INTEGER NOT NULL DEFAULT
+                  nextval('myschema.student_student_id_seq'),
+                Student_ECN_Number VARCHAR(7) NOT NULL,
+                Student_INE VARCHAR(16) NOT NULL,
+                Person_id INTEGER NOT NULL,
+                CONSTRAINT student_pk PRIMARY KEY (Student_ID)
+);
+ALTER SEQUENCE myschema.student_student_id_seq OWNED BY myschema.Student.Student_ID;
+ALTER TABLE myschema.Student ADD CONSTRAINT person_student_fk
+FOREIGN KEY (Person_id)
+REFERENCES myschema.Person (Person_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+~~~
+
+### Connection to a DBMS
+
+- It is possible to connect to a real DBMS
+  - to send SQL code
+  - for reverse engineering
+    - once the connection is established drag a schema into the drawing zone
+
+  \center\includegraphics[height=.45\textheight]{fig/pa_010.jpg}
+
+
+### Connextion to a DBMS
+
+- Name: connection name in Power Designer
+- Database type: select the right database type
+- hostname: server name or address
+- port: communication port (TCP/IP)
+- username & password: to connect to the database
+- URL: is automatically constructed from the parameters
+- The 'Test connection' button is used to validate the parameters
