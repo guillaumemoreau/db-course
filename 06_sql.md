@@ -338,11 +338,11 @@ WHERE Person.Birthcity_ID = City1.City_ID
 
 - It can be practical to rename columns
 - Use the `AS` operator
-  - *newname* `AS` *oldname*
+  - *oldname* `AS` *newname*
 - Example
 
 ~~~sql
-SELECT Person_ID,Name as Person.Person_Name
+SELECT Person_ID,Person.Person_Name AS Name
 FROM Person
 WHERE Person.Person_Name = 'Jack'
 ~~~
