@@ -672,3 +672,38 @@ Node  | Line  | Key  | Value | Timestamp
   - real-time access
   - easily extendable
   - highly fault-tolerant
+
+### Cassandra data model
+
+- Column model!
+- *Keyspace*: the data container
+  - relational equivalent: keyspace=database, schema
+- The keyspace contains at least 1 column family
+  - relational equivalent: column familiy=table
+- Every column family contains lines
+  - relational equivalent: a line=line, tuple
+- Every line has keys and columns
+  - relational equivalent: column=attribute
+- Column is the basis entity
+
+### Cassandra model: column
+
+- The smallest unit that can be recorded
+- Triple (key, value, timestamp)
+  - key = the name (max 64kb)
+  - value = the content (max 2Gb)
+    - may be omitted
+    - has a type
+  - timestamp to determine the last version
+- Also has
+  - a *comparator*: datatype of the column name
+  - a *validator*: datatype of the column value
+
+
+### Cassandra model: line
+
+- Set of columns (Max $10^{9}$)
+- Identified by a key (max 64kb)
+- Remarks
+  - lines do not have to have the same number of columns
+  - neither the same columns (also time depending)
