@@ -282,3 +282,393 @@
 - OrientDB: https://orientdb.com
 
 ## Big Data
+
+### Towards 'big data'
+
+- Every day, 2.5 trillion bytes of data are generated
+- 90% of data in the world have been generated in the last years
+  - sensors
+  - messages on social media
+  - images and videos
+  - online sales and advertising
+  - GPS tracks
+  - internet cookies
+  - ...
+
+### Example: SDSS
+
+- Sloan Digital Survey
+- 3D map of 1/3 of the canopy of heaven
+  - 470 millions stars
+  - 2000 galaxies
+- 10 year project to understand the Milky way and discover exoplanets
+- images: 1 peta-pixels ($10^{15} pixels)
+  - 500000 HD screen for visualizing
+  - 71 petabyte
+
+### Other examples
+
+- Deforestation: Planetary skin: 7Tb data
+- Astronomy: LSST 30Tb / night
+- Marine micro-organisms: GOS project 2Tb of data
+- Biochemistry: BSrC 100 millions of molecules
+- Liver cancer: ICGC project 200Tb of analysis data
+- real time epidemiology
+- ...
+
+### Issues
+
+- How to store such data volumes?
+- How to make them available?
+- How to process such data volumes?
+
+
+### Big Data=Intersection of 3V
+
+- Volume
+  - Data volume are getting even bigger
+- Variety
+  - Data are more and more complex ... and less and less structured
+- Velocity
+  - Data are acquired (and processed) on the fly
+
+### Volume
+
+- Data storage price is still decreasing
+- Several reliable storage solutions
+- How to determine which data are worth storing?
+
+
+### Variety
+
+- Data are more and more non-structured (or semi-structured)
+- Should data be stored under one or several format, type?
+- "Outdated" data may be useful for making decisions
+  - When/how to keep them?
+  - Under what form?
+
+### Velocity
+
+- Data must be processed more and more rapidly (stock exchange...)
+  - processing times, i.e. CPU issues
+  - in the processing chain
+
+## noSQL with Cassandra
+
+### Cassandra
+
+- Distributed database
+- Initially used as Facebook internal messaging system
+- Today maintained by Apache
+- Widely used distributed database
+
+### Principles
+
+- Non-centralized database
+  - no main node or /central server/
+  - all nodes are equal
+- Highly fault-tolerant
+  - multiple node replication
+- noSQL column model
+  - rich Model
+  - flexible
+
+### Principles
+
+- Why?
+  - Handling *large* data volumes
+  - Load balancing, availability
+- How?
+  - Data distribution (nodes can be added)
+  - Data replication (can be reconfigured)
+  - Consistency (can be reconfigured)
+  - No master / slave architecture
+
+
+### Technical stuff
+
+- Apache 2.0 License
+  - Open Source
+- Written in java
+- Data model based on
+  - BigTable (Google)
+  - DynamoDB (Amazon)
+- Thrift interface
+  - Ruby, Perl, Python, Scala, Java
+  - CQL language (Cassandra Query Language)
+- P2P based exchanges
+
+
+### Architecture
+
+- *Node*: instance of a server which stores data
+- *Cluster*: Logical set which contains several nodes
+  - no node is privileged inside a cluster
+  - but there is a coordinator
+- *Data Center*: Node sets
+
+\center\includegraphics[height=3.5cm]{fig/cassandra-model.pdf}
+
+### Data distribution
+
+Node  | Line  | Key  |  Value  
+--|---|---|--
+1  | 3  | 1  | xxxx  
+1  | 6  | 2  |  xxxx
+1  | 7  | 3  |  xxxx
+2  | 1  | 4  |  xxxx
+2  | 2  | 5  |  xxxx
+3  | 5  | 6  |  xxxx
+3  | 4  | 7  |  xxxx
+
+
+- Looking for the value mapped to key 5
+
+### Node 2 is crashed
+
+Node  | Line  | Key  |  Value  
+--|---|---|--
+1  | 3  | 1  | xxxx  
+1  | 6  | 2  |  xxxx
+1  | 7  | 3  |  xxxx
+~~2~~  | ~~1~~  | ~~4~~  |  ~~xxxx~~
+~~2~~  | ~~2~~  | ~~5~~  |  ~~xxxx~~
+3  | 5  | 6  |  xxxx
+3  | 4  | 7  |  xxxx
+
+- Value mapped to key 5 cannot be reached
+
+
+### Duplicating data on nodes
+
+\tiny
+
+Node  | Line  | Key  | Value  
+--|---|---|--
+1  | 3  |  1 |  xxxx
+1  | 6  |  2 |  xxxx
+1  | 7  |  3 |  xxxx
+1  | 1 |   4 |  xxxx
+1  | 2  |  5  |  xxxx
+2  | 1  |  4 |  xxxx
+2  | 2  |  5 |  xxxx
+2  | 5  |  6 |  xxxx
+2  | 4  |  7 |  xxxx
+3  | 5  |  6 |  xxxx
+3  | 4  |  7 |  xxxx
+3  | 3  |  1 |  xxxx
+3  | 6  |  2 |  xxxx
+3  | 7 |  3  |  xxxx
+
+- Replication depends on topology
+
+### Duplicating data on nodes
+
+\tiny
+
+Node  | Line  | Key  | Value  
+--|---|---|--
+1  | 3  |  1 |  xxxx
+1  | 6  |  2 |  xxxx
+1  | 7  |  3 |  xxxx
+1  | 1 |   4 |  xxxx
+1  | 2  |  5  |  xxxx
+~~2~~  | ~~1~~  |  ~~4~~ |  xxxx
+~~2~~  | ~~2~~  |  ~~5~~ |  xxxx
+~~2~~  | ~~5~~  |  ~~6~~ |  xxxx
+~~2~~ | ~~4~~  |  ~~7~~ |  xxxx
+3  | 5  |  6 |  xxxx
+3  | 4  |  7 |  xxxx
+3  | 3  |  1 |  xxxx
+3  | 6  |  2 |  xxxx
+3  | 7 |  3  |  xxxx
+
+- Still works if node 2 becomes unavailable
+
+
+### Synchronizing
+
+\tiny
+
+Node  | Line  | Key  | Value  
+--|---|---|--
+1  | 3  |  1 |  xxxx
+1  | 6  |  2 |  xxxx
+1  | 7  |  3 |  xxxx
+1  | 1 |   4 |  xxxx
+1  | 2  |  5  |  xxxx
+2  | 1  |  4 |  xxxx
+2  | 2  |  5 |  \textcolor{red}{yyyy}
+2  | 5  |  6 |  xxxx
+2  | 4  |  7 |  xxxx
+3  | 5  |  6 |  xxxx
+3  | 4  |  7 |  xxxx
+3  | 3  |  1 |  xxxx
+3  | 6  |  2 |  xxxx
+3  | 7 |  3  |  xxxx
+
+- timestamp required
+
+### Synchronizing
+
+\tiny
+
+Node  | Line  | Key  | Value | Timestamp
+--|---|---|--|-----
+1  | 3  |  1 |  xxxx | 09:01
+1  | 6  |  2 |  xxxx | 09:02
+1  | 7  |  3 |  xxxx | 09:03
+1  | 1 |   4 |  xxxx | 09:04
+1  | 2  |  5  |  xxxx | 09:05
+2  | 1  |  4 |  xxxx | 09:04
+2  | 2  |  5 |  \textcolor{red}{yyyy} | \textcolor{red}{17:15}
+2  | 5  |  6 |  xxxx | 09:06
+2  | 4  |  7 |  xxxx | 09:07
+3  | 5  |  6 |  xxxx | 09:06
+3  | 4  |  7 |  xxxx | 09:07
+3  | 3  |  1 |  xxxx | 09:01
+3  | 6  |  2 |  xxxx | 09:02
+3  | 7 |  3  |  xxxx | 09:03
+
+### Writing
+
+- The coordinator transmits the update to all nodes sharing the information
+- Data will be updated as a background task
+- If consistency greater than the number of /writes/, database is supposed to be consistent
+  - consistency=number of of nodes which have finished updating date
+
+### Inserting new data
+
+\tiny
+
+Node  | Line  | Key  | Value | Timestamp
+--|---|---|--|-----
+1  | 3  |  1 |  xxxx | 09:01
+1  | 6  |  2 |  xxxx | 09:02
+1  | 7  |  3 |  xxxx | 09:03
+1  | 1 |   4 |  xxxx | 09:04
+1  | 2  |  5  |  xxxx | 09:05
+2  | 1  |  4 |  xxxx | 09:04
+2  | 2  |  5 |  xxxx | 09:05
+\textcolor{green}{2}  | \textcolor{green}{8}  | \textcolor{green}{8}  |  \textcolor{green}{xxxx} | \textcolor{green}{11:00}
+2  | 5  |  6 |  xxxx | 09:06
+2  | 4  |  7 |  xxxx | 09:07
+3  | 5  |  6 |  xxxx | 09:06
+3  | 4  |  7 |  xxxx | 09:07
+3  | 3  |  1 |  xxxx | 09:01
+3  | 6  |  2 |  xxxx | 09:02
+3  | 7 |  3  |  xxxx | 09:03
+
+- Line number consistency
+- Replication needed
+
+### Removing data
+
+\tiny
+
+Node  | Line  | Key  | Value | Timestamp
+--|---|---|--|-----
+1  | 3  |  1 |  xxxx | 09:01
+1  | 6  |  2 |  xxxx | 09:02
+1  | 7  |  3 |  xxxx | 09:03
+1  | 1 |   4 |  xxxx | 09:04
+1  | 2  |  5  |  xxxx | 09:05
+2  | 1  |  4 |  xxxx | 09:04
+2  | 2  |  5 |  xxxx | 09:05
+2  | 5  |  6 |  xxxx | 09:06
+**2**  | **4**  |  **7** |  **xxxx** | **09:07**
+3  | 5  |  6 |  xxxx | 09:06
+3  | 4  |  7 |  xxxx | 09:07
+3  | 3  |  1 |  xxxx | 09:01
+3  | 6  |  2 |  xxxx | 09:02
+3  | 7 |  3  |  xxxx | 09:03
+
+- need to look for all nodes having data about line 4 / key 7
+
+### Removing data
+
+\tiny
+
+Node  | Line  | Key  | Value | Timestamp
+--|---|---|--|-----
+1  | 3  |  1 |  xxxx | 09:01
+1  | 6  |  2 |  xxxx | 09:02
+1  | 7  |  3 |  xxxx | 09:03
+1  | 1 |   4 |  xxxx | 09:04
+1  | 2  |  5  |  xxxx | 09:05
+2  | 1  |  4 |  xxxx | 09:04
+2  | 2  |  5 |  xxxx | 09:05
+2  | 5  |  6 |  xxxx | 09:06
+**2**  | **4**  |  **7** |  **xxxx** | **09:07**
+3  | 5  |  6 |  xxxx | 09:06
+**3**  | **4**  |  **7** |  **xxxx** | **09:07**
+3  | 3  |  1 |  xxxx | 09:01
+3  | 6  |  2 |  xxxx | 09:02
+3  | 7 |  3  |  xxxx | 09:03
+
+- All corresponding lines on all nodes are marked for removal
+
+### Removing data
+
+\tiny
+
+Node  | Line  | Key  | Value | Timestamp
+--|---|---|--|-----
+1  | 3  |  1 |  xxxx | 09:01
+1  | 6  |  2 |  xxxx | 09:02
+1  | 7  |  3 |  xxxx | 09:03
+1  | 1 |   4 |  xxxx | 09:04
+1  | 2  |  5  |  xxxx | 09:05
+2  | 1  |  4 |  xxxx | 09:04
+2  | 2  |  5 |  xxxx | 09:05
+2  | 5  |  6 |  xxxx | 09:06
+3  | 5  |  6 |  xxxx | 09:06
+3  | 3  |  1 |  xxxx | 09:01
+3  | 6  |  2 |  xxxx | 09:02
+3  | 7 |  3  |  xxxx | 09:03
+
+- Data are actually removed
+
+### Consequences
+
+- Impossible to do *rollbacks*: Every update is recorded, more or less rapidly
+- At a given instant, all replicated data are not identical. They will be when the nodes are eventually synchronized
+- A removed line may appear, as empty, in a query. Columns are marked for removal but as long as the removal is not performed, the line still exists
+- An information (column) that has been removed may re-appear after a given amount of time. It may happen when a node has been out of service for long enough to have the information re-appear when the node is on again
+
+### Summary on Cassandra
+
+- Consistency
+- Atomicity at the line level
+- Basic queries: using a dedicated language (CQL)
+- Scalability
+  - High availability
+  - Distribution
+  - Configurable
+
+### Summary on Cassandra
+
+- In details
+  - Loss of ACID properties
+  - No joins
+  - Pre-defined queries
+  - No sort other than the explicitly planned ones
+  - A few (disturbing) side effects
+- But
+  - Allows to handle large amount of data
+  - Structuring -> fast access to information
+  - Reconfigurable depending on circumstances
+  - Can be coupled with Hadoop (Map-Reduce)
+
+### Conclusion
+
+- Do not use if you need ACID properties
+  - stick to the relational model then
+- Do not use if you do not know your queries first
+- Beware of modeling issues: no joins -> specific modeling
+- But you get
+  - Large data size
+  - Priority to data availability
+  - real-time access
+  - easily extendable
+  - highly fault-tolerant
