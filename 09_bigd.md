@@ -707,3 +707,126 @@ Node  | Line  | Key  | Value | Timestamp
 - Remarks
   - lines do not have to have the same number of columns
   - neither the same columns (also time depending)
+
+Key  | Lastname  | Firstname  | Address  |  Phone  
+--|---|---|---|--
+Pascal  | DAVID  | Pascal  | Saint-Nazaire  |  +33 665 ....
+
+Key  | Lastname  | Firstname  | Role
+--|---|---|---|--
+Carole  |  ROQUES | Carole  | Designer  |  
+
+
+### Column families
+
+- Logical group of lines
+- /Persons/ family
+
+
+Key  | Lastname  | Firstname  | Address  |  Phone  
+--|---|---|---|--
+Pascal  | DAVID  | Pascal  | Saint-Nazaire  |  +33 665 ....
+
+Key  | Lastname  | Firstname  | Role
+--|---|---|---|--
+Carole  |  ROQUES | Carole  | Designer  |  
+
+### Column types
+
+- Static
+  - columns are defined when creating or updating a column family
+- Dynamic
+  - columuns are defined when creating or updating a line
+
+### Keyspaces
+
+- Logical group of column families
+- Examples: a keyspace composed of /Persons/ and /Services/
+  - not linked with the relational model
+
+### Information distribution
+
+- To what extent can we take into account?
+- Problem
+  - The database is spread among several nodes and among several clusters
+  - How to organize things such as a query does not have to be executed on all nodes to gain execution time?
+- Solution
+  - Know where are the data we are looking for?
+    - Plan data distribution
+    - use a hashing mechanism for distribution and retrieval of objects
+    - provide a partitioning key
+
+### Partitioning
+
+- Lines are grouped into partitions. A partition is always located on a **single node**
+- Partitioning keys are added to distribute lines on the cluster
+- Partioning keys are computed as parts of the primary key
+- Practically
+  - The primary key is cut into two parts
+    - A common part to several keys which is the partition
+    - The remainder of the key
+  - As many partitions as necessary are created
+    - Cassandra will ensure that the lines belonging to the same partition are stored on the same node
+  - As the partitioning keys are identical throughout a partition, they are stored only once
+  - Lines are ordered along a partition thanks to the remainder of the key
+
+### Example
+
+\center\includegraphics[width=4cm]{fig/partition.pdf}
+
+### Example
+
+\center\includegraphics[width=6cm]{fig/partitioning-1.pdf}
+
+### Example
+
+\center\includegraphics[width=6cm]{fig/partitioning-2.pdf}
+
+### Node organization
+
+\center\includegraphics[width=6cm]{fig/cassandra-nodes.pdf}
+
+## A very short introduction to CQL
+
+### CQL
+
+- CQL = Cassandra Query Language
+  - inspired from SQL
+  - Specific to Cassandra
+- Command line usage: `cqlsh`
+- A few (limited) graphical tools
+- Ref: https://docs.datastax.com/en/cql/3.3/cql/cql_reference/cqlReferenceTOC.html
+
+### Commands
+
+- Creation
+- Manipulation: CRUD
+- Non case sensitive
+  - if you want case sensitive names, use double quotes
+  - `table = TABLE <> "Table"`
+- Strings use single quotes, a quote in a string must be doubled
+
+
+### Data types
+
+- int, smallint, bigint, varint, float, double, boolean
+- text, varchar
+- date, time, timestamp
+- counter
+- uuid, timeuuid
+- blob
+- list, map, set
+- ...
+- user defined types
+
+### A few commands
+
+- `CREATE KEYSPACE myKeyspace`
+- `DROP KEYSPACE myKeySpace`
+- `CREATE TABLE myTable ...`
+- `DROP TABLE myTable`
+- `ALTER TABLE myTable ...`
+- `INSERT INTO...`
+- `SELECT ... FROM ...`
+- `UPDATE ...`
+- `DELETE ...`
