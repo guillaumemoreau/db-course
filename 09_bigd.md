@@ -830,3 +830,168 @@ Carole  |  ROQUES | Carole  | Designer  |
 - `SELECT ... FROM ...`
 - `UPDATE ...`
 - `DELETE ...`
+
+### cqsl commands
+
+- `EXIT`
+- `SHOW`: displays information on Cassandra
+- `SOURCE file`: runs a CQL script
+- `COPY ...`: imports/exports CSV files
+
+
+### CRUD: creation
+
+~~~sql
+INSERT INTO [keyspace.]table (list_of_columns)
+VALUES (list_of_values)
+[IF NOT EXISTS]
+[USING TTL seconds | TIMESTAMP epoch_in_microseconds]
+~~~
+
+- the column list MUST contain the primary key
+- `IF NOT EXISTS` is used to return a value (true/false)
+- `USING TTL` tells that the data will be outdated (and thus removable) after a given amount of time (TTL=time to live)
+- `USING TIMESTAMP` indicates the timestamp to use for inserting the values of the columns
+- Warning: `IF NOT EXISTS` and `USING TIMESTAMP` are not compatible
+
+### Remarks
+
+- Non mentioned values are set to `NULL`
+- You can not include counters values. Those values can only be set with `UPDATE`
+- Clustering columns can not be more than 64kb
+- Values can be
+  - of standard type
+  - collections
+    - sets `{ ... }`
+    - lists `[ ... ]`
+    - maps `{key:value ...}`
+
+### CRUD: update
+
+~~~sql
+UPDATE [keyspace.]table
+[USING TTL seconds | USING TIMESTAMP epoch_in_microseconds] SET assignement [, assignement] . . .
+WHERE conditions
+[IF EXISTS | IF condition [AND condition] . . .] ;
+~~~
+
+- `USING TIMESTAMP` and `USING TTL`: same as insert
+- `IF EXISTS` and `IF` return a boolean information to indicate what has been updated
+- Assignments allow to assign values (terminal values and collections)
+- Conditions work the same as in SQL. The condition must act on:
+  - the partitioning key when a static column is updated
+  - all the primary key otherwise
+
+### CRUD: delete
+
+~~~sql
+DELETE [column_name (term)][, ...] FROM [keyspace.]table
+[USING TIMESTAMP timestamp_value] WHERE PK_column_conditions
+[IF EXISTS | IF static_column_conditions]
+~~~
+
+- Warning: removal is not performed immediately
+- By default, delete removes the indicated columns. If no column is indicated, the whole line is removed
+- If `USING TIMESTAMP` is specified, older values than the indicated timestamp will be removed
+- The condition lays on the primary key and can only use = and `IN`
+
+### SELECT
+
+~~~sql
+SELECT * | expression | DISTINCT partition FROM [keyspace.] table
+[WHERE partition_value
+[AND clustering_filters
+[AND static_filters]]]
+[ORDER BY PK_column_name ASC|DESC] [LIMIT N]
+[ALLOW FILTERING]
+~~~
+
+### Notes
+
+- Select can only occur on a column family. There are no joins
+- Sorting can only be done on a column of the primary key
+- Conditions are limited. They can be related to:
+  - the partition, which allows to know on which node is the information stored
+  - on static columns - they are linked to the partition
+  - on clustering columns because they are complementary to the primary key. This condition will only be evaluated on the nodes matching with the searched partitions
+
+### Selection constraints
+
+- In CQL, you can only have conditions on the partitioning key and related things
+- If you try conditions on static columns, you will get error messages
+  - because result is not guaranteed
+  - that you may overcome by adding `ALLOW FILTERING` to your query
+- On other columns, you also get error messages
+  - because you would need to search for all data on all servers
+  - and you cannot overcome it. You need to change the model!
+
+### SELECT
+
+- In a `SELECT`, you can use:
+  - `*`: all columns
+  - a list of identified columns
+  - `DISTINCT` partitions
+  - agreggation functions on partitions (count, sum, add...)
+  - `WRITETIME(column)` = write date for the column
+    - warning: does not work on lists, sets and maps
+
+
+### Infrastructure creation
+
+- Create a keyspace
+
+~~~sql
+CREATE KEYSPACE keySpaceName [ IF NOT EXISTS ]
+WITH REPLICATION = {
+‘class’ : ‘SimpleStrategy’,
+};
+~~~
+
+- Use a keyspace
+
+~~~sql
+USE keySpaceName;
+~~~
+
+- Describe a keyspace
+
+~~~sql
+DESCRIBE keySpaceName;
+~~~
+
+### Infrastructure updating
+
+~~~sql
+ALTER KEYSPACE keyspaceName
+WITH strategy_class=SimpleStrategy
+AND strategy_options:replication_factor=1;
+~~~
+
+
+~~~sql
+DROP KEYSPACE keyspaceName;
+~~~
+
+### Creating column families
+
+~~~sql
+CREATE TABLE myFamily (
+aColumn itsType,
+anotherColumn itsType,
+....
+PRIMARY KEY ( key_column, clustering_keys )
+);
+~~~
+
+- the first column of `PRIMARY KEY` is the partitioning key (used for defining the table partitioning)
+- the other columns of `PRIMARY KEY` are the clustering keys. Among other things, they are used for ordering lignes inside the partition
+- Static columns can be added by adding the `STATIC` key word to the column definition
+
+### Updating a column family
+
+~~~sql
+ALTER TABLE [keyspace_name.] table_name [ALTER column_name TYPE cql_type]
+[ADD (column_definition_list)]
+[DROP column_list | COMPACT STORAGE ] [RENAME column_name TO column_name]
+[WITH table_properties];
+~~~
