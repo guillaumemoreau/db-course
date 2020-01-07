@@ -153,7 +153,7 @@ NOT DEFERRABLE;
   \center\includegraphics[height=.45\textheight]{fig/pa_010.jpg}
 
 
-### Connextion to a DBMS
+### Connection to a DBMS
 
 - Name: connection name in Power Designer
 - Database type: select the right database type
