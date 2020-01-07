@@ -1,7 +1,7 @@
 
 # Towards "Big data"
 
-## NoSQL
+## noSQL
 
 ###  Introduction
 
@@ -29,8 +29,8 @@
 ### Distributed systems
 
 - 3 main properties: CAP
-  - Coherence: All nodes see the same data as the same time
-  - Availability: Losing one node does prevent from running
+  - Consistency: All nodes see the same data as the same time, i.e. answers to queries are consistent and correct
+  - Availability: the system is available all the time and answers its users, i.e. operations are executed in a finite amount of time
   - Partition Tolerance: Once partitioned, only a total loss of network prevents from running
 - CAP theorem (Brewer, 2000): in a distributed system, it is impossible to keep those 3 properties valid at the same time, you can choose at most 2 among 3
 
@@ -55,7 +55,7 @@
   - Complex or imbricated data
   - Potential copy of data on several nodes
   - Not completely fulfilling ACID constraints
-  - Availability is more important than Coherence
+  - Availability is more important than Consistency
   - Few writes, lots of reads
 
 ### noSQL basis
@@ -202,7 +202,7 @@
 
 - Data are stored on a column-basis rather than a line-basis
 - Model close to relational model ... but with a dynamic number of columns which does not have to be identical between lines
-- Data of a same column can be compressed when they /look the same/
+- Data of a same column can be compressed when they *look the same*
 - We can distinguish between:
   - column: data field, defined a (key,value) pair
   - column family: can group columns or super-columns
@@ -257,7 +257,7 @@
 
 ### Graph model
 
-- Model  the storage and the handling of complex data linked by non trivial and/or variable relationships
+- Models  the storage and the handling of complex data linked by non trivial and/or variable relationships
 - Based on graph theory
   - Relies on nodes, relationships and properties
 - Uses
@@ -286,6 +286,8 @@
 ### Towards 'big data'
 
 - Every day, 2.5 trillion bytes of data are generated
+  - 1 minute (2017): 3.4M status change on Facebook, 300k queries on Google, 325k tweets
+  - Walmart produces 25000Tb data a day!
 - 90% of data in the world have been generated in the last years
   - sensors
   - messages on social media
@@ -302,13 +304,13 @@
   - 470 millions stars
   - 2000 galaxies
 - 10 year project to understand the Milky way and discover exoplanets
-- images: 1 peta-pixels ($10^{15} pixels)
-  - 500000 HD screen for visualizing
+- images: 1 peta-pixels ($10^{15}$ pixels)
+  - 500000 HD screens for visualizing
   - 71 petabyte
 
 ### Other examples
 
-- Deforestation: Planetary skin: 7Tb data
+- Deforestation: Planetary skin 7Tb data
 - Astronomy: LSST 30Tb / night
 - Marine micro-organisms: GOS project 2Tb of data
 - Biochemistry: BSrC 100 millions of molecules
@@ -337,6 +339,7 @@
 - Data storage price is still decreasing
 - Several reliable storage solutions
 - How to determine which data are worth storing?
+- GDPR...
 
 
 ### Variety
@@ -365,8 +368,8 @@
 ### Principles
 
 - Non-centralized database
-  - no main node or /central server/
-  - all nodes are equal
+  - no main node or *central server*
+  - all nodes are equal (somehow)
 - Highly fault-tolerant
   - multiple node replication
 - noSQL column model
@@ -534,7 +537,7 @@ Node  | Line  | Key  | Value | Timestamp
 
 - The coordinator transmits the update to all nodes sharing the information
 - Data will be updated as a background task
-- If consistency greater than the number of /writes/, database is supposed to be consistent
+- If consistency degree greater than the number of *writes*, database is supposed to be consistent
   - consistency=number of of nodes which have finished updating date
 
 ### Inserting new data
@@ -679,12 +682,12 @@ Node  | Line  | Key  | Value | Timestamp
 - *Keyspace*: the data container
   - relational equivalent: keyspace=database, schema
 - The keyspace contains at least 1 column family
-  - relational equivalent: column familiy=table
+  - relational equivalent: column family=table
 - Every column family contains lines
   - relational equivalent: a line=line, tuple
 - Every line has keys and columns
   - relational equivalent: column=attribute
-- Column is the basis entity
+- Column is the basic entity
 
 ### Cassandra model: column
 
@@ -694,6 +697,7 @@ Node  | Line  | Key  | Value | Timestamp
   - value = the content (max 2Gb)
     - may be omitted
     - has a type
+    - it can have several values
   - timestamp to determine the last version
 - Also has
   - a *comparator*: datatype of the column name
@@ -720,8 +724,7 @@ Carole  |  ROQUES | Carole  | Designer  |
 ### Column families
 
 - Logical group of lines
-- /Persons/ family
-
+- *Persons* family
 
 Key  | Lastname  | Firstname  | Address  |  Phone  
 --|---|---|---|--
@@ -736,17 +739,17 @@ Carole  |  ROQUES | Carole  | Designer  |
 - Static
   - columns are defined when creating or updating a column family
 - Dynamic
-  - columuns are defined when creating or updating a line
+  - columns are defined when creating or updating a line
 
 ### Keyspaces
 
 - Logical group of column families
-- Examples: a keyspace composed of /Persons/ and /Services/
-  - not linked with the relational model
+- Examples: a keyspace composed of *Persons* and *Services*
+  - **not** linked with the relational model
 
 ### Information distribution
 
-- To what extent can we take into account?
+- To what extent can we take it into account?
 - Problem
   - The database is spread among several nodes and among several clusters
   - How to organize things such as a query does not have to be executed on all nodes to gain execution time?
@@ -760,7 +763,7 @@ Carole  |  ROQUES | Carole  | Designer  |
 
 - Lines are grouped into partitions. A partition is always located on a **single node**
 - Partitioning keys are added to distribute lines on the cluster
-- Partioning keys are computed as parts of the primary key
+- Partitioning keys are computed as parts of the primary key
 - Practically
   - The primary key is cut into two parts
     - A common part to several keys which is the partition
