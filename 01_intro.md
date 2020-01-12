@@ -119,12 +119,16 @@ Have a look at this bill
 
 ### Example
 
+
 ~~~~~
 LFRS 210730Z AUTO 31005KT 3700 BR BKN003 BKN013 OVC020 08/08
 Q1040 TEMPO 2000 -DZ BR VV///
 ~~~~~
 
+\tiny
+
 - What does that mean?
+\tiny
   - LFRS: Nantes Atlantique Airport
   - Day 21st, 07:30 local time
   - Automatic station
@@ -137,6 +141,8 @@ Q1040 TEMPO 2000 -DZ BR VV///
   - Temperature: 8 degrees C, dew point: 8 degrees C
   - MSL pressure: 1040hPa
   - ...
+
+
 
 ### Structured files: columns
 
@@ -324,25 +330,25 @@ Obama        Barack            1960/01/01     34994333  The White House, Washing
 
 17h30: Passenger A is looking at the seat map
 
-\center\includegraphics[height=5cm]{fig/seatmap1.png}
+\center\includegraphics[height=4.5cm]{fig/seatmap1.png}
 
 ### Example 2: booking a seat in an aircraft (2/4)
 
 17h32: Passenger B is looking at the seat map
 
-\center\includegraphics[height=5cm]{fig/seatmap1.png}
+\center\includegraphics[height=4.5cm]{fig/seatmap1.png}
 
 ### Example 2: booking a seat in an aircraft (3/4)
 
 17h32: Passenger B chooses seat 36J
 
-\center\includegraphics[height=5cm]{fig/seatmap2.png}
+\center\includegraphics[height=4.5cm]{fig/seatmap2.png}
 
 ### Example 2: booking a seat in an aircraft (2/4)
 
 17h40: Passenger A eventually chooses seat 36J
 
-\center\includegraphics[height=5cm]{fig/seatmap2.png}
+\center\includegraphics[height=4.5cm]{fig/seatmap2.png}
 
 ### Concurrent access
 
@@ -464,29 +470,29 @@ Evolution of standard hard disk capacity. **log** scale (source Wikipedia)
   - started with sequential access (tapes)
 - Then, random access was made possible
   - Direct access
-  - required file structuring
+  - Required file structuring
 
 ### History
 
 - Companies needs
-  - financial data, business data, technical data, production data...
-  - driven by technological progress
+  - Financial data, business data, technical data, production data...
+  - Driven by technological progress
 - 1962: the Database concept
 
 
 ### History of databases
 
 - 1st generation: based on access models
-  - separation between data + navigation access language
-  - hierarchical or network model
+  - Separation between data + navigation access language
+  - Hierarchical or network model
 - 2nd generation: based on the relational model (1980s)
   - 1997: SQL by IBM
   - 1986: SQL1 becomes an ISO standard
 - 3rd generation: other database types
-  - object-oriented
-  - deductive
-  - fuzzy logics
-  - multimedia
+  - Object-oriented
+  - Deductive
+  - Fuzzy logics
+  - Multimedia
   - XML
   - ...
 

@@ -1,6 +1,6 @@
 % Databases
 % Guillaume Moreau
-% January 2019
+% January 2020
 
 ### Database course
 
