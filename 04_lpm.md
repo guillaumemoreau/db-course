@@ -6,7 +6,7 @@
 
 
 - So far, we have conceptual models
-  - Entity-Association
+  - Entity-Relationship
   - UML
   - *SysML*
 - We remember of mentioning the relational model
@@ -19,14 +19,14 @@
 - Data logical model
   - it consists in describing the data structure that is used without referring to a specific programming language
 - Data physical model
-  - it is a formalism that allows to specify the storage system used in a DBMS
+  - it is a formalism that allows to specify the storage system used in an actual DBMS
 
-## From the E-A model to the relational model
+## From the E-R model to the relational model
 
-### Entity-Association model
+### Entity-Relationship model
 
 - Entities
-- Associations
+- Relationships
 - Properties
 - Identifiers
 - Cardinalities
