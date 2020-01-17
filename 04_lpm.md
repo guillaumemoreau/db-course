@@ -86,9 +86,9 @@
 \center\includegraphics[width=.8\textwidth]{fig/lpm-3.pdf}
 
 - Student(\underline{StudentId},Lastname,Firstname)
-- \textcolor{red}{Participates(StudentId,AbbName)}
+- \textcolor{red}{Participates(\underline{StudentId,AbbName})}
 - Course(\underline{CourseId},Name)
-- \textcolor{red}{Teaches(FacultyId,AbbName)}
+- \textcolor{red}{Teaches(\underline{FacultyId,AbbName})}
 - Faculty(\underline{FacultyId},Lastname,Firstname,StatusName)
 - Status(\underline{StatusName})
 
