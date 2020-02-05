@@ -1,3 +1,4 @@
+
 # Introduction to SQL
 
 ### Introduction
@@ -209,7 +210,7 @@ SELECT Lastname,Firstname FROM Student
 - Equality checks are case sensitive
   - i.e. `'Test'` is not equal to `'test'`
 - Lexicographic order is used
-
+  - Beware of comparisons involving accents
 
 ### LIKE
 
@@ -244,7 +245,7 @@ SELECT Lastname,Firstname FROM Student
 
 - `attribute IS NULL` tests whether `attribute` does not have a value
   - converse: `attribute IS NOT NULL`
-  - beware of using null in composed conditions
+- Beware of using `NULL` in composed conditions
 
 ### IN
 
@@ -327,11 +328,11 @@ WHERE Person.Person_ID = Student.Person_ID
 . . .
 
 ~~~sql
-SELECT LastName, City1.Name
-FROM Person, City City1, City City2
-WHERE Person.Birthcity_ID = City1.City_ID
-  AND Person.LivingCity_ID = City1.City_ID
-  AND City2.Name = 'Paris'
+SELECT LastName, CityB.Name
+FROM Person, City CityL, City CityB
+WHERE Person.Birthcity_ID = CityB.City_ID
+  AND Person.LivingCity_ID = CityL.City_ID
+  AND CityL.Name = 'Paris'
 ~~~
 
 ### Renaming columns
