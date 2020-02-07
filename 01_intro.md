@@ -130,7 +130,7 @@ Q1040 TEMPO 2000 -DZ BR VV///
 - What does that mean?
 \tiny
   - LFRS: Nantes Atlantique Airport
-  - Day 21st, 07:30 local time
+  - Day 21st, 07:30UTC
   - Automatic station
   - Wind: from 310deg. 10 knots
   - Horizontal visibility 3700m
