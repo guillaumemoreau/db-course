@@ -21,6 +21,7 @@
 # *.eps
 slides.pdf
 07_tools.pdf
+test.pdf 
 
 ## specific for db-course
 slides.md
@@ -29,6 +30,8 @@ labs
 .DS_Store
 test.*
 tutorials
+whatcanido.md
+
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
