@@ -141,7 +141,7 @@
 ### Business Intelligence
 
 - BI = Business Intelligence
-- Set of technologies allowing companies (organisations) to analyze their data to make relevant decisions
+- Set of technologies allowing companies (organizations) to analyze their data to make relevant decisions
 - Can denote: applications, infrastructure, tools...
 - Goal: analyze information improve, optimize decision making and performance
 - Mainly relies on data analysis tools
@@ -244,9 +244,9 @@ $conn = new PDO("pgsql:host=localhost;dbname=test",$user,$pass);
 - `prepare` defines a SQL query
   - parameters can be defined in two ways:
     - `?` value of the parameter indicated in the `execute` method
-    - `:paramName` value of the paramter indicated with `bindParam`
-- `bindParam` defines the values of the paramters of a query
-- `execute` executes a query defined by `prepare`. It sets the paramters values
+    - `:paramName` value of the parameter indicated with `bindParam`
+- `bindParam` defines the values of the parameters of a query
+- `execute` executes a query defined by `prepare`. It sets the parameters values
 - `fetchAll` gets all lines of the result table
 - `closeCursor` closes the SQL query and gets the memory back
 
@@ -292,7 +292,7 @@ echo $aRow[”name”].” ”.$aRow[”firstname”].”<br/ >\n” ; $query->c
 - JDBC = Java DataBase Connectivity
 - **The** way of accessing databases in java
   - Based on the principles of ODBC
-  - Driver is indenpendent of the Operating System (java based)
+  - Driver is independent of the Operating System (java based)
   - Needs the installation of the relevant JDBC driver before use
 
 
@@ -353,7 +353,7 @@ DriverManager.deregister(theDriver);
 
 ### Establish a connection
 
-- Caution: The JDBC driver must be properly located to allow the connection to be estbalished
+- Caution: The JDBC driver must be properly located to allow the connection to be established
 - A `Connection` object is used for exchanges with the DBMS
 - To connect:
 
@@ -386,7 +386,7 @@ connect.close();
 - The most common ones are
   - `Statement`
   - `PreparedStatement`
-- It is **highly recommanded** to avoid the first class which is sensitive to SQL injections (and therefore likely to be unsecure)
+- It is **highly recommended** to avoid the first class which is sensitive to SQL injections (and therefore likely to be insecure)
 - When they are created those objects allow to set specific properties on the query result (go backwards, modify the result...)
 
 
@@ -416,7 +416,7 @@ PreparedStatement stmt = connect.prepareStatement(query);
 - To provide the parameter a value, a `set` method is used
   - It depends on the parameter type: `setString`, `setInteger`, `setDate`...
   - The first parameter is the index inside the query (1, 2...)
-  - the second paramter is the parameter value
+  - the second parameter is the parameter value
 
 \scriptsize
 ```java
@@ -521,7 +521,7 @@ public static void main(String[] argv) {
 
 ### To connect with Python - steps
 
-- Like in most langugages, there are several steps
+- Like in most programming languages, there are several steps
   1. Importing the relevant module
   2. Open a connection to the database
   3. Create a cursor for an SQL query
@@ -604,7 +604,7 @@ conn.close()
 
 ### Avoiding SQL injections
 
-To avoid SQL injections, dictionnaries can be used
+To avoid SQL injections, dictionaries can be used
 
 \scriptsize
 
