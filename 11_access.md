@@ -616,8 +616,6 @@ cursor.execute(‚ÄùINSERT INTO person(name,firstname) VALUES (:name, :firstname)‚
 comm.commit()
 ```
 
-## Conclusion
-
 ### Conclusion
 
 - In most programming languages, there exists one or several ways to connect to database
