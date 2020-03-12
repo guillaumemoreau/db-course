@@ -30,6 +30,10 @@ test.pdf: 11_access.md
 	cat 00_intro.md 11_access.md > test.md
 	pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o test.pdf $(FONTOPTIONS)
 
+sql.pdf: 06_sql.md 06_sql_ddl.md 06_sql_dcl.md
+	cat 00_intro.md 06_sql.md 06_sql_ddl.md 06_sql_dcl.md > test.md 
+	pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o sql.pdf $(FONTOPTIONS)
+	
 07_tools.pdf: 07_tools.md
 		cat 00_base.md 07_tools.md > test.md
 		pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o 07_tools.pdf $(FONTOPTIONS)

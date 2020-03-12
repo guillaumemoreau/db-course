@@ -771,7 +771,7 @@ ORDER BY sorting-columns-list
   - `INSERT`: adding lines
   - `UPDATE`: updating lines
   - `DELETE`: removing lines
-- Each of these statements can be applied to only and only table at a times
+- Each of these staements can be applied to one and only one table at a time
 
 
 ### Insertion
@@ -928,10 +928,10 @@ Looks good if everything is executed sequentially (1 after 2 or 2 after 1). But 
 ### Properties of transactions
 
 - ACID
-  - **A** tomicity: everything or nothing
-  - **C** consistency: switching to a consistent state to another consistent state
-  - **I** solation: The simultaneous execution of 2 transactions produces the same result as their sequential execution
-  - **D** urability: if a transaction is confirmed, its result is recorded into the database
+  - **A**tomicity: everything or nothing
+  - **C**onsistency: switching to a consistent state to another consistent state
+  - **I**solation: The simultaneous execution of 2 transactions produces the same result as their sequential execution
+  - **D**urability: if a transaction is confirmed, its result is recorded into the database
 
 
 ### Save points

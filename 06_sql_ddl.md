@@ -48,7 +48,12 @@ CREATE TABLE name(
 )
 ~~~
 
+- `AS sql-query` is used to copy both the structure and the lines of another table
+
 ### DBMS differences
+
+\scriptsize 
+
 - Oracle
 ~~~sql
 CREATE TABLE name (
@@ -221,7 +226,7 @@ CREATE TABLE Department (
 
 ### Properties
 
-- Foreign key embed a referential integrity mechanism qui ensures that
+- Foreign key embed a referential integrity mechanism which ensures that
   - a line cannot be inserted if the target of the foreign key does not exist
   - the target of the foreign key cannot be modified if it is still referenced
   - the target of the foreign key cannot be destroyed if it is still referenced
