@@ -8,11 +8,11 @@
 - Facts
   - More and more data are collected (GAFA...)
   - Data are distributed
-  - Data are becoming heteregeneous and barely structured
+  - Data are becoming heterogeneous and barely structured
   - The relational model is not enough
 - Needs
   - Highly distributed databases
-  - Complex and heteregeneous objects
+  - Complex and heterogeneous objects
   - Large data volumes
     - hence Not Only SQL (noSQL)
 
@@ -62,7 +62,7 @@
 
 - Main elements
   - Sharding: partitioning data on several servers
-  - Consistent hashing: partitioning data on several servers which are themselved partitioned on a segment
+  - Consistent hashing: partitioning data on several servers which are themselves partitioned on a segment
   - Map Reduce: parallel programming model
   - MVCC: Multiversion consistency control
   - Vector-Clock: allows concurrent updating by timestamping of data
@@ -79,9 +79,10 @@
 ### Consistent hashing
 
 - Valid for horizontal partitioning only
-- Data and servers are /hashed/ by the same function
-- Data are mapped the server just behind on a ring representing the hash values
+- Data and servers are *hashed* by the same function
+- Data are mapped to the preceding server on a ring representing the hash values
 
+\center\includegraphics[width=3cm]{fig/hash-ring.pdf}
 
 ### Map-Reduce
 
@@ -124,7 +125,7 @@
   - map(key,value) -> list(inter-key,inter-value)
   - reduce(inter-key,list(inter-value)) -> value
 - 5 steps
-  - initialisation
+  - initialization
   - Map
   - Regrouping
   - Sort
@@ -141,7 +142,7 @@
 ### Example
 
 - Map-Reduce approach
-  1. *Initialisation*: line cutting for balancing between processes
+  1. *Initialization*: line cutting for balancing between processes
   2. *Map*: processing a line=create a mapping (word, number of occurrences)
   3. *Regrouping*: group the number of occurrences for a same word
   4. *Sort*: Each process handles a word: it sums the number of occurrences
@@ -149,13 +150,13 @@
 
 ### Example
 
-\center\includegraphics[width=7cm]{fig/map-reduce.pdf}
+\center\includegraphics[width=9cm]{fig/map-reduce.pdf}
 
 ### MVCC: mutiversion concurrency control
 
 - Handles concurrent access to data, more specifically for updates
   - ticks old data
-  - add a new version of data and timestamps them
+  - adds a new version of data and timestamps them
   - regularly sweeps through data and deletes outdated data
 
 ### Server classes
@@ -171,7 +172,7 @@
 
 ### Key-value model
 
-- somehow works like a traditional hash table
+- Somehow works like a traditional hash table
 - Data are represented by a (key,value) pair
 - Access to a data is possible through its key
 
@@ -230,7 +231,7 @@
 
 - Stores a collection of documents
 - Based on the (key,value) model, the value itself being a document
-- Documents does not have a schema but a tree-like structure. They contain a list of fields along with their values
+- Documents do not have a schema but a tree-like structure. They contain a list of fields along with their values
 - The fields of a document are not necessarily predefined
 - Documents can be heterogeneous
 - Allows to query on documents content
@@ -328,7 +329,7 @@
 ### Big Data=Intersection of 3V
 
 - Volume
-  - Data volume are getting even bigger
+  - Data volumes are getting even bigger
 - Variety
   - Data are more and more complex ... and less and less structured
 - Velocity
@@ -373,7 +374,7 @@
 - Highly fault-tolerant
   - multiple node replication
 - noSQL column model
-  - rich Model
+  - rich model
   - flexible
 
 ### Principles
@@ -537,8 +538,8 @@ Node  | Line  | Key  | Value | Timestamp
 
 - The coordinator transmits the update to all nodes sharing the information
 - Data will be updated as a background task
-- If consistency degree greater than the number of *writes*, database is supposed to be consistent
-  - consistency=number of of nodes which have finished updating date
+- If the consistency degree is greater than the number of *writes*, database is supposed to be consistent
+  - consistency=number of of nodes which have finished updating data
 
 ### Inserting new data
 
@@ -779,22 +780,22 @@ Carole  |  ROQUES | Carole  | Designer  |
 
 ### Example
 
-\center\includegraphics[width=6cm]{fig/partitioning-1.pdf}
+\center\includegraphics[width=7cm]{fig/partitioning-1.pdf}
 
 ### Example
 
-\center\includegraphics[width=6cm]{fig/partitioning-2.pdf}
+\center\includegraphics[width=7cm]{fig/partitioning-2.pdf}
 
 ### Node organization
 
-\center\includegraphics[width=6cm]{fig/cassandra-nodes.pdf}
+\center\includegraphics[width=9cm]{fig/cassandra-nodes.pdf}
 
 ## A very short introduction to CQL
 
 ### CQL
 
 - CQL = Cassandra Query Language
-  - inspired from SQL
+  - Inspired from SQL
   - Specific to Cassandra
 - Command line usage: `cqlsh`
 - A few (limited) graphical tools
@@ -900,6 +901,8 @@ DELETE [column_name (term)][, ...] FROM [keyspace.]table
 
 ### SELECT
 
+\scriptsize 
+
 ~~~sql
 SELECT * | expression | DISTINCT partition FROM [keyspace.] table
 [WHERE partition_value
@@ -911,7 +914,7 @@ SELECT * | expression | DISTINCT partition FROM [keyspace.] table
 
 ### Notes
 
-- Select can only occur on a column family. There are no joins
+- `SELECT` can only occur on a column family. There are no joins
 - Sorting can only be done on a column of the primary key
 - Conditions are limited. They can be related to:
   - the partition, which allows to know on which node is the information stored
@@ -922,7 +925,7 @@ SELECT * | expression | DISTINCT partition FROM [keyspace.] table
 
 - In CQL, you can only have conditions on the partitioning key and related things
 - If you try conditions on static columns, you will get error messages
-  - because result is not guaranteed
+  - because the result is not guaranteed
   - that you may overcome by adding `ALLOW FILTERING` to your query
 - On other columns, you also get error messages
   - because you would need to search for all data on all servers
@@ -991,6 +994,9 @@ PRIMARY KEY ( key_column, clustering_keys )
 - Static columns can be added by adding the `STATIC` key word to the column definition
 
 ### Updating a column family
+
+\scriptsize
+
 
 ~~~sql
 ALTER TABLE [keyspace_name.] table_name [ALTER column_name TYPE cql_type]
