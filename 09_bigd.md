@@ -19,20 +19,23 @@
 ### The relational model
 
 - ACID constraints
-  - Atomicity: all or nothing
-  - Consistency: from a valid state to another valid state
-  - Isolation: every query is executed as it was unique
-  - Durability: once done, the update is recorded
+  - *Atomicity*: all or nothing
+  - *Consistency*: from a valid state to another valid state
+  - *Isolation*: every query is executed as if it was unique
+  - *Durability*: once done, the update is recorded
 - Those properties are difficult to keep in a highly distributed environment while keeping similar performances
 
 
 ### Distributed systems
 
 - 3 main properties: CAP
-  - Consistency: All nodes see the same data as the same time, i.e. answers to queries are consistent and correct
-  - Availability: the system is available all the time and answers its users, i.e. operations are executed in a finite amount of time
-  - Partition Tolerance: Once partitioned, only a total loss of network prevents from running
-- CAP theorem (Brewer, 2000): in a distributed system, it is impossible to keep those 3 properties valid at the same time, you can choose at most 2 among 3
+  - *Consistency*: All nodes see the same data at the same time, i.e. answers to queries are consistent and correct
+  - *Availability*: the system is available all the time and answers its users, i.e. operations are executed in a finite amount of time
+  - *Partition Tolerance*: Once partitioned, only a total loss of network prevents from running
+
+\begin{block}{CAP theorem (Brewer, 2000)}
+In a distributed system, it is impossible to keep those 3 properties valid at the same time, you can choose at most 2 among 3
+\end{block}
 
 ### NoSQL vs traditional relational DMS
 
@@ -75,6 +78,18 @@
     - load balancing between servers
     - some nodes are duplicated between servers
   - Vertical partitioning = cutting by column
+
+### Reminder
+
+- A hash function $f : S \longrightarrow N$ such as $f(s) = n$ provides a *signature* of $s$
+  - $S$ being a general set of arbitrary size
+  - $N$ being a well specified set of fixed size (usually much smaller)
+  - $f$ may keep some properties 
+    - equality, probable equality, non-equality, ordering
+  - more or less an injection 
+  - used in data structures, cryptography
+  - example hash functions: `md5`, `SHA-1`, `CRC`...
+
 
 ### Consistent hashing
 
@@ -133,7 +148,7 @@
 
 ### Example
 
-- Count the number of words contained in a file
+- Count the number of occurrences of words contained in a file
 - Classical approach
   - Iterate through lines
     - For each line, count the words and add
@@ -161,19 +176,19 @@
 
 ### Server classes
 
-- Key-Value model
+- **Key-Value** model
   - Every object has a unique key
-- Column model
+- **Column** model
   - Every line has numerous values
-- Document model
+- **Document** model
   - Handling document collections
-- Graph model
+- **Graph** model
   - Handling multiple relationships between objects
 
 ### Key-value model
 
 - Somehow works like a traditional hash table
-- Data are represented by a (key,value) pair
+- Data are represented by a $(key,value)$ pair
 - Access to a data is possible through its key
 
 
@@ -184,7 +199,7 @@
   - Horizontal partitioning eased
     - can change the number of servers
     - availability
-    - no significant maintenance when changing column number
+    - no significant maintenance when changing the number of columns
 - Cons
   - Too simple!
     - poor for handling complex data
@@ -201,11 +216,11 @@
 
 ### Column model
 
-- Data are stored on a column-basis rather than a line-basis
-- Model close to relational model ... but with a dynamic number of columns which does not have to be identical between lines
+- Data are stored on a column-basis rather than on a line-basis
+- Close to the relational model ... but with a dynamic number of columns which does not have to be identical between lines
 - Data of a same column can be compressed when they *look the same*
 - We can distinguish between:
-  - column: data field, defined a (key,value) pair
+  - column: data field, defined a $(key,value)$ pair
   - column family: can group columns or super-columns
   - super-column: used as the lines of a join table in a relational model
 
@@ -230,7 +245,7 @@
 ### Document model
 
 - Stores a collection of documents
-- Based on the (key,value) model, the value itself being a document
+- Based on the $(key,value)$ model, the value itself being a document
 - Documents do not have a schema but a tree-like structure. They contain a list of fields along with their values
 - The fields of a document are not necessarily predefined
 - Documents can be heterogeneous
@@ -282,6 +297,20 @@
 - DEX/Sparksee: http://www.sparsity-technologies.com
 - OrientDB: https://orientdb.com
 
+
+### Why Choose a noSQL server? 
+
+- SQL and noSQL do not provide the same type of service
+- Relational databases
+  - Structured data 
+  - Interconnected data 
+  - ACID properties
+- noSQL
+  - Large amount of data 
+  - Distributed data 
+  - Limited connection between data 
+
+
 ## Big Data
 
 ### Towards 'big data'
@@ -301,10 +330,10 @@
 ### Example: SDSS
 
 - Sloan Digital Survey
-- 3D map of 1/3 of the canopy of heaven
+- 3D map of 1/3 of the celestial vault
   - 470 millions stars
   - 2000 galaxies
-- 10 year project to understand the Milky way and discover exoplanets
+- 10-year project to understand the Milky way and discover exoplanets
 - images: 1 peta-pixels ($10^{15}$ pixels)
   - 500000 HD screens for visualizing
   - 71 petabyte
@@ -356,6 +385,90 @@
 - Data must be processed more and more rapidly (stock exchange...)
   - processing times, i.e. CPU issues
   - in the processing chain
+
+### Another view to data 
+
+- Social networks 
+- Recommendation services 
+- Market analysis and prediction 
+- Massive customer personalized relationship 
+- Targeted ads 
+- Reactivity
+- ...
+
+### Towards new jobs 
+
+- Example: Data scientist 
+  - IT specialist 
+  - Development and tool deployment 
+  - Parallelism handling
+  - Statistics 
+  - Manager 
+
+### How does it change the game? 
+
+- Data are there. What do we do with them?
+  - Identify available data 
+  - Data exploration platform 
+  - What kind of analysis? 
+  - Introducing new technology to acquire new information 
+
+### Big data tools 
+
+- 2 main types
+  - Computer Science tools 
+  - Mathematical tools 
+
+
+### Mathematical tools 
+
+- Using
+  - analysis models 
+  - predictive models 
+  - ...
+- Average  and standard deviation are far from being enough!
+- Remind that correlation is not causality 
+
+### Computer Science tools 
+
+- Memorize information 
+- Process information 
+
+
+### Memorize information 
+
+- Big Data
+  - Lots of data 
+  - Data is not always well structured 
+  - Usually no time for real-time processing 
+- Consequence
+  - Towards NoSQL instead of the relationel model 
+  - If possible, use distribution 
+
+
+### Process information 
+
+- Powerful processing models
+  - Distributed data 
+  - Large amount of data 
+- Parallel computing tools
+  - Hadoop, Spark... 
+
+
+### Conclusion 
+
+- RDBMS / NoSQL - Big data 
+  - Very different approach to data 
+    - Acquisition (massive data)
+    - Manipulation (using server farms)
+    - Processing (see Map-Reduce)
+  - Very different way of thinking
+  - Not the same use!
+
+
+
+
+
 
 ## noSQL with Cassandra
 

@@ -41,3 +41,7 @@ sql.pdf: 06_sql.md 06_sql_ddl.md 06_sql_dcl.md
 11_access.pdf: 11_access.md
 	cat 00_base.md 11_access.md > test.md
 	pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o 11_access.pdf $(FONTOPTIONS)
+
+09_bigd.pdf: 09_bigd.md 
+	cat 00_base.md 09_bigd.md > test.md
+	pandoc --slide-level 3 -st beamer -V theme:$(THEME) -V lang:en-US test.md -o 09_bigd.pdf $(FONTOPTIONS)
