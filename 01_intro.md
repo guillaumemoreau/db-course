@@ -424,7 +424,7 @@ A database is:
 
 - **Large** compared to human memory
 - **Persistent** throughout time (fault-tolerant)
-- **Set of ** mathematical notion
+- **Set of** mathematical notion
 - **Structured** organized, having relationships
 - **Consistent** integrity constraints are defined and enforced
 - **Simultaneous** parallelism of access, shared data
@@ -454,6 +454,223 @@ Evolution of standard hard disk capacity. **log** scale (source Wikipedia)
 
 \center\includegraphics[height=5cm]{fig/dd.png}
 
+### So, what is the main difference between databases and information systems?
+
+- Limitations of databases
+  - Each application provides its own database
+  - No consistency between those
+- The best tool of the world is useless if it is not used as planned
+  - Organization
+  - Change management
+- **Computer programs are not made for computer scientists**
+
+### A few quotes (1/2)
+
+> Quickly said, an organization (company, public administration, local authority...) is structured around goals (sales, production, public service) to which it dedicates resources, ..., and to satisfy this goal, manipulates information through various supports: an information system
+
+B. Le Roux
+
+### A few quotes (2/2)
+
+> Organization and informations are inseparable concepts and it would be deeply erroneous to trade them separately.
+
+J. Mélèse
+
+### A few quotes (3/3)
+
+> A described organization may not work ideally, a non-described organization may work ideally but an organization that can not be described can not work ideally.
+
+> An IT strategy aims at describing the organization, the processes and the procedures more than application architectures
+
+Y. Condemine
+
+### A few definitions
+
+\center\includegraphics[height=2.5cm]{fig/strategy.pdf}
+
+- **Management**: art or way of driving an organization, to plan its development, to control it (R.A. Thiétart)
+- **Strategy**: choice of the activity domains in which the organization aims to be present and resource allocation such as to maintain and develop its position
+
+### Underlying assumptions
+
+- Systemic view of the organization
+  - i.e. an open system with aims, rules and composed of interacting sub-systems
+- Information Systems allow
+  - new organization types
+  - new work types
+  - new added values
+
+
+### Definitions (continued)
+
+- Organization unit: information processing unit
+  - input information
+  - information processing
+  - output new information
+- Organization: system composed of several units
+- Information system: set of techniques and processes that allow information to circulate in the organization
+
+### Definitions (continued)
+
+- Information system: a structured set of tools, methods and services aiming at answering questions related to an organization or to a specific domain
+  - example: does student XX fulfill the conditions to get the Centrale Nantes degree?
+- Consequence: first step for setting up an information system
+  - collect data
+  - ensure data quality
+
+### Definitions (continued)
+
+- A set of
+  - organization
+  - actors
+  - procedures
+  - IT tools
+- To
+  - process
+  - exploit
+- Information
+- within Goals defined
+  - by the organization strategy
+  - linked to the business of the organization
+  - enforcing the law
+
+### Features
+
+- The information systems has:
+  1. Human resources
+  2. Technical resources
+  3. Data and interpretation models
+  4. Procedures and rules
+- It should bring to its actors the information and knowledge they need to make decisions
+
+### Limitations
+
+- It is a **model** of reality
+  - A model has a validity domain
+  - data quality
+- It is an artefact somehow linked to reality
+  - both are evolving in parallel
+
+### Why have Information systems changed the business world?
+
+- New ways of running your Business
+  - from "La Redoute" to Amazon
+  - yield management
+- What is the difference between a 19th century back and a 21st century bank?
+  - from the safe to electronic money exchange and fast-pace trading
+- New economic models
+  - Uber, Blablacar
+  - price comparators
+
+### IT project: the myths (1/3)
+
+- The **final user point** of view
+  - General statements about the goals are enough, details will be seen later
+  - The projects need change over time but those changes are easy to handle because it is easy for me to figure them out (implicit)
+- Truth
+  - Bad requirements: major cause of delays and quality issues
+  - As in product design, the later the correction, the more expensive it is
+
+### IT project: the myths (2/3)
+
+- The **developer** point of view
+  - Once the program is written and running, the work of the developer is over
+  - As long as a program is not finished writing, it cannot be tested or assessed for quality
+  - For the success of a project, the most important deliverable is the running program
+- Truth
+  - More than 50% of a program cost takes place after delivery
+  - This is more than test cases (whenever they exist)
+  - A software configuration includes documentation, test data, results of tests on those test data, how to generate a clean instance...
+
+### IT project: the myths (3/3)
+
+- The **project manager** point of view
+  - Our company has strict norms and processes, it will ensure quality
+  - We have enough and appropriate computers and software
+  - If the project is late, we will hire more developers
+- Truth
+  - Are standards comprehensive and really enforced?
+  - Tools are not enough for quality, they need good practices around
+  - Software development is not an industrial activity
+
+### IT project
+
+- A good IT project should (harmoniously) handle:
+  - strategic aspects
+    - how does it contribute to the goals and challenges of the organization
+  - user aspects
+    - appropriation
+  - product aspects
+    - a product that is running and matching needs
+  - team aspects
+    - motivated, sustainable and efficient team
+- 3 **U**
+  - **U**sable
+  - **U**seful
+  - Actually **U**sed...
+
+### Change management
+
+  - Installing a new software does not solve every problem
+    - Changing the way people have been working for years
+    - Changing the corporate culture
+    - Loss of influence
+    - ...
+  - It is possible that the best product may be rejected by final users
+  - No silver bullet method
+    - hence the importance of any IT project
+    - not the goal of this course but remember of this problem
+
+## Information systems security
+
+### Security = Cold chain
+
+\center\includegraphics[height=5cm]{fig/marteau.png}
+
+### Risk types
+
+- Theft, modification, destruction of data/Software
+- Service denial
+- Source: internal or external
+- Motivation: fun to malice
+
+
+### Attack types
+
+- Sniffing (listening to the network)
+- Phishing (imitating someone else)
+- Service or protocol attack
+- Viruses, worms, Trojan horses
+  - Viruses: executables contained in a document, mail
+  - Trojan horse: sending information from inside
+  - Worm: moves itself from machine to machine
+
+### Definitions (1/4)
+
+Data **Confidentiality**: Information should not be available nor accessible to any non authorized user, entity or process
+
+### Definitions (2/4)
+
+Data **Integrity**: Information should not be modified or destroyed without proper authorization
+
+### Definitions (3/4)
+
+Service **availability**: the access by a user, an entity or a process to an authorized service should always be possible
+
+### Definitions (4/4)
+
+**Access Control**: User authentication, data origin control, network filtering, the importance of logs
+
+### Conclusion
+
+Information systems require:
+
+- A global vision of the system
+- Responsible professionals
+- Appropriate tools
+
+\center\includegraphics[height=2.5cm]{fig/global.png} \includegraphics[height=2.5cm]{fig/notmyjob.png} \includegraphics[height=2.5cm]{fig/soviet.png}
+
 ### Conclusion: Information systems are much more than computer science!
 
 - Have a look at this screenshot
@@ -462,358 +679,3 @@ Evolution of standard hard disk capacity. **log** scale (source Wikipedia)
 
 \center\includegraphics[height=5cm]{fig/serse.jpg}
 
-
-### History
-
-- 1950-1960: files started to be stored on computers
-  - required access methods and file organization
-  - started with sequential access (tapes)
-- Then, random access was made possible
-  - Direct access
-  - Required file structuring
-
-### History
-
-- Companies needs
-  - Financial data, business data, technical data, production data...
-  - Driven by technological progress
-- 1962: the Database concept
-
-
-### History of databases
-
-- 1st generation: based on access models
-  - Separation between data + navigation access language
-  - Hierarchical or network model
-- 2nd generation: based on the relational model (1980s)
-  - 1997: SQL by IBM
-  - 1986: SQL1 becomes an ISO standard
-- 3rd generation: other database types
-  - Object-oriented
-  - Deductive
-  - Fuzzy logics
-  - Multimedia
-  - XML
-  - ...
-
-### To date
-
-- Relational databases take the biggest share of the database related activity
-- noSQL has appeared
-- Big Data impact
-
-
-## Problem statement
-
-
-### Example
-
-> A rental store has several device types for rent. Devices as well as
-> their type are designated by a number and have a label. Every device type
-> has a rental rate. Devices may be rented by customers, identified by a number
-> and whose name and address are known. A customer may rent several devices.
-> The same device may be rented several times by the same customer, therefore
-> the rent start date and duration are stored. Customers who have forgotten
-> to give back their devices will be contacted and billed.
-
-### Step 1: modeling
-
-- Conceptual data model
-
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-1.pdf}}
-
-### Step 2: transformation into a logical model
-
-- Logical model
-
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-2.pdf}}
-
-### Step 3: Adding type information
-
-- Physical model of data
-
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-3.pdf}}
-
-### Step 4: Translation
-
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-4.pdf}}
-
-### Step 5: Implementation
-
-- The database can now be populated and used
-
-\center{\includegraphics[height=.55\textheight]{fig/cmodel-5.pdf}}
-
-### Operating
-
-\center{\includegraphics[height=.65\textheight]{fig/cmodel-6.pdf}}
-
-### Definitions
-
-- **Modeling** is the activity which consists in elaborating a structured representation of reality
-- A **database** is a **representation** of a part of the real world which is of interest for users and applications
-- **Modeling a database** is the elaboration of data structures for the data that will be recorded into a database
-- The definition of those structures is stored in the **schema** of a database
-
-
-### Information system
-
-\center{\includegraphics[height=.65\textheight]{fig/is.pdf}}
-
-
-## Databases
-
-### Definitions
-
-> 'Structured set of data recorded on devices a computer can access to simultaneously satisfy several users in a selective way and at the right time[^da]'
-
-
-> 'Set of data memorized by a computer, used by several persons and having an organization described by a data model[^mo]'
-
-> 'Set of data handled a dabatase management system used to model a single company[^ga]'
-
-[^da]: Delobel, Adiba
-[^mo]: Morejon
-[^ga]: Gardarin
-
-### Criteria
-
-1. Good representation of the real world
-2. No redundancy of information
-3. Independence between data and processings
-4. Security and confidentiality of data
-5. Performance of applications and queries
-
-
-### Deploying a database
-
-1. Determine and identify the problem
-2. Propose possible solutions
-3. Model the system
-4. Design the solution
-5. Test the solution
-6. Maintain and improve the system
-
-### Determine and identify the problem
-
-- What problem are you modeling?
-- What are the boundaries of the problem?
-  - i.e. what are you **not** modeling?
-- Who are the stakeholders?
-- What are the reference documents?
-- What data? Which processings?
-- What are the constraints?
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-1.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-2.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-3.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-4.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-5.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-6.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-7.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-8.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-9.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-10.pdf}}
-
-### Gathering information
-
-\center{\includegraphics[width=.8\textwidth]{fig/info-11.pdf}}
-
-### How to collect information?
-
-- Written documents
-  - existing documents (bills, forms...)
-  - documents to write (questionnaires, statistics...)
-- Oral enquiry
-  - stakeholders interviews (explanations, cross-check, supplementary material)
-- Visual enquiry
-  - qualitative (acting stakeholder, information circuit...)
-    - seeing how it actually works on the desktop  
-    - following an information
-  - quantitative
-    - numbers of computers, servers, forms, processed documents, processing times...
-
-### Propose possible solutions
-
-- Ask questions to the future users
-- Gather documents
-- Sort information
-- Dictionary of the terminology
-- *Validate* upon users and managers
-
-### Model the system
-
-- Structure information
-- Model information (conceptual model)
-- *Validate* upon users and managers
-
-### Conceptual model
-
-- Independent from technologies
-  - portability
-  - durability
-- User-oriented
-  - Legible
-  - Supporting the dialog between designers and users
-  - allows collaboration with and validation by users
-- Formal unambiguous specifications
-- Support for visual interfaces
-- Facilitates information exchange between several DB systems
-
-
-### Designing a solution
-
-- Translate the conceptual model into a logical model
-- Add types to complete the physical model
-- Choose a DBMS type
-- Translate into SQL
-- Implement the SQL file(s) into the DBMS
-- If required, add internal functions
-- Add security elements
-
-### Test the solution
-
-- Setup a test database
-- Add information
-- Check primary key presence (same for secondary keys) and that they are normally working
-- Test for data required for processings
-- Test for response times
-- Test for security
-
-
-### Maintain and improve the system
-
-- Correct errors if any
-- If new constraints arise, update the database schema
-  - update the conceptual schema
-  - deduce the modifications that are required in the database
-    - including existing data themselves
-  - test evolutions on the test base
-  - tell the users!!
-  - update the database
-- Note: it may happen that you will have to update a database schema for which you do not have all documents
-  - reverse engineering
-
-## Database Management Systems (DBMS)
-
-### DBMS
-
-- Software used to organize and handle data
-- Main functions
-  - Describe the database(s) structure
-  - Manipulate data
-  - Use data
-  - Ensure data integrity and confidentiality
-  - Optimize data access
-
-### DBMS
-
-- Characterized by the supported data model
-  - 1st generation
-    - based on hierarchical and network models
-    - navigation-based data language
-  - 2nd generation
-    - based on the relational model
-    - SQL...
-  - 3rd generation
-    - based on the object model
-    - SQL3 and others...
-
-### DBMS users
-
-- System engineer
-  - Maintenance, backups & restores
-- Database administrator
-  - defines the various components of the database
-  - description or definition language
-- Application administrator
-- Application programmer
-  - writes programs for an application
-  - manipulation language
-- Database user
-  - uses the DB to obtain information
-  - query language
-
-### A few DBMS examples
-
-- Oracle
-- SQL Server
-- Sybase
-- DB2
-- PostgreSQL
-- mySQL
-- H2
-- ...
-
-
-### Using a DBMS
-
-- Setting up the DBMS
-  - installation
-  - configure
-  - secure
-- Setting up an administration software
-- Dialog between the software through Internet
-  - data manipulation language
-
-### Summary
-
-- Analysis: a DB is a representation of a part of reality which is of interest
-
-\center{\includegraphics[width=.6\textwidth]{fig/analysis.pdf}}
-
-### Abstraction
-
-- From perceived reality to representation
-
-\center{\includegraphics[width=.6\textwidth]{fig/summary-1.pdf}}
-
-### Definition of the conceptual schema
-
-- A schema is a collection of stereotypes
-- The database will contain the values representing the instances of those stereotypes
-
-\center{\includegraphics[width=.6\textwidth]{fig/ea-model.pdf}}
-
-### Definition of the physical schema
-
-- Translation to a logical model
-- Then to a physical model
-
-\center{\includegraphics[width=.8\textwidth]{fig/ea-model2.pdf}}
-
-### Implementation of the physical schema
-
-- Choose a DBMS (compatible with the physical schema)
-- Implement the physical model into the DBMS
-
-\center{\includegraphics[width=.8\textwidth]{fig/ea-model3.pdf}}
