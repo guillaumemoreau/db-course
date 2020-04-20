@@ -292,6 +292,8 @@ Obama        Barack            1960/01/01     34994333  The White House, Washing
   - Queries will be making the link between tables, i.e. **joins**
 - This is what we will see next in relational algebra and databases
 
+## DBMS: It is not that simple! 
+
 ### Not that simple...
 
 > So, why is Microsoft Access (generic name) not a real database management system?
@@ -454,6 +456,8 @@ Evolution of standard hard disk capacity. **log** scale (source Wikipedia)
 
 \center\includegraphics[height=5cm]{fig/dd.png}
 
+## Towards Information systems 
+
 ### So, what is the main difference between databases and information systems?
 
 - Limitations of databases
@@ -562,6 +566,8 @@ Y. Condemine
   - Uber, Blablacar
   - price comparators
 
+## A few other considerations
+
 ### IT project: the myths (1/3)
 
 - The **final user point** of view
@@ -621,7 +627,6 @@ Y. Condemine
     - hence the importance of any IT project
     - not the goal of this course but remember of this problem
 
-## Information systems security
 
 ### Security = Cold chain
 
@@ -669,7 +674,7 @@ Information systems require:
 - Responsible professionals
 - Appropriate tools
 
-\center\includegraphics[height=2.5cm]{fig/global.png} \includegraphics[height=2.5cm]{fig/notmyjob.png} \includegraphics[height=2.5cm]{fig/soviet.png}
+\center\includegraphics[height=2.8cm]{fig/global.png} \includegraphics[height=2.8cm]{fig/notmyjob.png} \includegraphics[height=2.8cm]{fig/soviet.png}
 
 ### Conclusion: Information systems are much more than computer science!
 
