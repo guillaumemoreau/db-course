@@ -301,7 +301,7 @@ echo $aRow[”name”].” ”.$aRow[”firstname”].”<br/ >\n” ; $query->c
 
 - API for connecting to databases
 - 1 driver for every database type
-- 4 drivers types
+- 4 driver types
   - type 1: gateways between ODBC and JDBC
   - type 2: native API (direct connection to the database)
   - type 3: converts JDBC calls into a protocol which is independent of the DBMS
@@ -463,7 +463,7 @@ public class testSQL {
 public static void main(String[] argv) {
   try {
     Class.forName(”org.postgresql.Driver”) ;
-    Connection connect = DriverManager.getConnection(”jdbc :postgresql :/localhost/test”, ”prweb”, ”prweb”) ; String query = ”SELECT * FROM Person WHERE Person_name= ?” ;
+    Connection connect = DriverManager.getConnection(”jdbc:postgresql:/localhost/test”, ”prweb”, ”prweb”) ; String query = ”SELECT * FROM Person WHERE Person_name= ?” ;
     PreparedStatement stmt = connect.prepareStatement(query ) ;
     stmt.setString(1, "David") ;
     ResultSet res = stmt.executeQuery() ;
@@ -473,10 +473,10 @@ public static void main(String[] argv) {
     stmt.close() ;
     connect.close() ;
   } catch(java.lang.ClassNotFoundException e) {
-    System.err.println(”ClassNotFoundException : ” + e.getMessage()) ;
+    System.err.println(”ClassNotFoundException: ” + e.getMessage()) ;
   }
   catch(SQLException ex) {
-    System.err.println(”SQLException : ” + ex.getMessage()) ;
+    System.err.println(”SQLException: ” + ex.getMessage()) ;
   }
 }
 }
@@ -618,7 +618,7 @@ comm.commit()
 
 ### Conclusion
 
-- In most programming languages, there exists one or several ways to connect to database
+- In most programming languages, there exists one or several ways to connect to a database
   - not mentioned here but still true: C++, Ruby, Cobol...
 - A few suggestions
   - If there exist frameworks, use them!
