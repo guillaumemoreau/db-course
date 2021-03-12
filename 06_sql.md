@@ -771,7 +771,7 @@ ORDER BY sorting-columns-list
   - `INSERT`: adding lines
   - `UPDATE`: updating lines
   - `DELETE`: removing lines
-- Each of these staements can be applied to one and only one table at a time
+- Each of these statements can be applied to one and only one table at a time
 
 
 ### Insertion
