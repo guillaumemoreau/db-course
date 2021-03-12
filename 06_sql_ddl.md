@@ -212,7 +212,7 @@ CREATE TABLE Employee(
 )
 CREATE TABLE Department (
   dpt_id CHARACTER VARYING(18) NOT NULL PRIMARY KEY,
-  manager_id CAHR(11) REFERENCES Employee
+  manager_id CHAR(11) REFERENCES Employee
 )
 ~~~
 
@@ -220,7 +220,7 @@ CREATE TABLE Department (
 ~~~sql
 CREATE TABLE Department (
   dpt_id CHARACTER VARYING(18) NOT NULL PRIMARY KEY,
-  manager_id CAHR(6) REFERENCES Employee(emp_Number)
+  manager_id CHAR(6) REFERENCES Employee(emp_Number)
 )
 ~~~
 
@@ -391,7 +391,7 @@ CREATE TABLE Employee (
 - Complex: use `TRIGGER`
 - `CREATE TRIGGER`
   - will be seen in the PL/SQL chapter
-  - when something occurs (linked to `INSERT/DELETE/UDATE`)
+  - when something occurs (linked to `INSERT/DELETE/UPDATE`)
   - if a condition is fulfilled
   - then do something
 
@@ -422,7 +422,7 @@ RENAME COLUMN old-name TO new-name
   - `RENAME`
 - Add a column or a constraint
   - `ADD`
-- Modufy a column or a constraint
+- Modify a column or a constraint
   - `MODIFY`
 - Remove a column or a constraint
   - `DROP`
