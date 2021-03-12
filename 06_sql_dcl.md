@@ -5,7 +5,7 @@
 ### Data Control Language
 
 - Used to specify who is owner of what and who can do what
-  - on base or table basis
+  - on database or table basis
 - Depending on the DBMS, granularity may not be the same
 
 ### Data Control Language
@@ -29,7 +29,7 @@
 
 - `GRANT operation ON object TO user [WITH GRANT OPTION]`
   - *operation*: in `ALL`, `SELECT`, `UPDATE`, `DELETE`, ...
-  - *object*: `TABLE mytable`,`ALL TABLES`...
+  - *object*: `TABLE mytable`, `ALL TABLES`...
   - *user*: the user to which this privilege is granted
 - Symetrically
   - `DENY operation ON object TO user`
@@ -72,7 +72,7 @@ CREATE ROLE name [SUPERUSER | NOSUPERUSER |
 ### Schemas
 
 - By default, there exists one schema in a database, named `public`
-- Every schema behaves like an indenpendant database
+- Every schema behaves like an independent database
 - It is possible to handle privileges at the schema level
 - Is it possible to query tables on
   - the tables belonging to the same schema
@@ -81,7 +81,7 @@ CREATE ROLE name [SUPERUSER | NOSUPERUSER |
 ### Views
 
 - A view: information aggregation
-- A view behaves like a table without identifiers on which `SELECT` are possible
+- A view behaves like a table without identifiers on which `SELECT` (and only `SELECT`) are possible
 - A view is obtained from a query on the tables of the database
 - It is not necessary to have `SELECT` privileges on the tables involved in the query, only the view privilege is required
 - A view records the query definition, not its result

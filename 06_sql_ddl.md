@@ -226,7 +226,7 @@ CREATE TABLE Department (
 
 ### Properties
 
-- Foreign key embed a referential integrity mechanism which ensures that
+- Foreign keys embed a referential integrity mechanism which ensures that
   - a line cannot be inserted if the target of the foreign key does not exist
   - the target of the foreign key cannot be modified if it is still referenced
   - the target of the foreign key cannot be destroyed if it is still referenced
@@ -449,14 +449,14 @@ REFERENCES foreigntable(foreignkey);
 ### Indexes
 
 - Somes queries can run for a long time
-  - It is possible to use acceleration techniques
+- It is possible to use acceleration techniques
   - indexing some columns
     - creating a hastable on a column or a set of column
-  - Pros
-    - accelerates searches
-  - Cons
-    - uses space
-    - slows down inserts, removals and updates
+- Pros
+  - accelerates searches
+- Cons
+  - uses space
+  - slows down inserts, removals and updates
 
 
 ### How to setup indexes
