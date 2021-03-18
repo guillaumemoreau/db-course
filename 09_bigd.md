@@ -515,6 +515,21 @@ In a distributed system, it is impossible to keep those 3 properties valid at th
   - CQL language (Cassandra Query Language)
 - P2P based exchanges
 
+### Who's using Cassandra?
+
+- Apple has a 75000 nodes Cassandra cluster
+  - Maps, iCloud...
+  - More than $10^{16}$ bytes of data
+- Netflix is running 2000 nodes with more than $10^6$ writes/s 
+
+### Why?
+
+- There are **large** volumes of data 
+- Load balancing and availability are key issues 
+- hundreds of thousands of writes / s 
+- Low latency required 
+- Add/remove nodes on the fly 
+
 
 ### Architecture
 
